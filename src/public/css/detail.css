@@ -1,0 +1,209 @@
+.shop-detail__container {
+    display: flex;
+    justify-content: space-between;
+    /* 子要素の間にスペースを入れる */
+    align-items: flex-start;
+    /* 子要素を上揃えにする */
+    padding: 20px;
+    /* コンテナの内側の余白を追加 */
+}
+
+.shop-detail__content {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+    width: 100%;
+    margin-right: 20px;
+}
+
+.shop-detail__selected-shop-details {
+    width: 48%;
+    /* 2つの要素が横並びに表示されるように幅を調整 */
+    padding: 20px;
+    /* 内側の余白を追加 */
+}
+
+.shop-detail__reservation-form {
+    position: relative;
+    width: 48%;
+    color: #fff;
+    background-color: #4455d9;
+    padding: 20px;
+    box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    margin-top: -90px;
+}
+
+.shop-detail__selected-shop-details img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+.shop-detail__tag{
+    display: flex;
+}
+
+.shop-detail__tag p{
+    margin-right: 10px;
+}
+
+.shop-detail__form-group {
+    margin-bottom: 15px;
+    /* フォームグループの下に余白を追加 */
+}
+
+.shop-detail__reservation-form-title{
+    font-weight: bold;
+}
+
+.shop-detail__form-group input,select{
+    padding: 5px;
+    box-sizing: border-box;
+    font-size: 14px;
+    border-radius: 7px;
+    border: none;
+    cursor: pointer;
+}
+
+.shop-detail__input-date{
+    width: 45%;
+}
+
+.shop-detail__input-time,
+.shop-detail__select-number{
+    width: 100%;
+    height: 33px;
+    background-image: url('/storage/images/select-button.svg');
+    background-repeat: no-repeat;
+    background-size: 15px;
+    padding: 0 25px 0 10px;
+    background-position: right 10px top 50%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+.shop-detail__input-time::-webkit-calendar-picker-indicator {
+    display: none;
+}
+
+.shop-detail__reservation-button {
+    position: absolute;
+    bottom: 0;
+        /* 親要素の下端に配置 */
+    left: 0;
+        /* 左端に配置 */
+    width: 100%;
+    background-color: #041ede;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.shop-detail__reservation-button:hover {
+    background-color: #45a049;
+    /* ボタンのホバー時の背景色 */
+}
+
+.shop-detail__reservation-status {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #6572d4;
+}
+
+.shop-detail__reservation-status-title {
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.shop-detail__reservation-status {
+    width: 90%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.shop-detail__reservation-status-item {
+    padding: 10px 0 10px 30px;
+    text-align: left;
+}
+
+.shop-detail__alert-success{
+    color: #fff;
+    font-size: 15px;
+    background-color: rgb(245, 70, 70);
+    padding: 10px;
+    text-align: center;
+}
+
+
+@media screen and (max-width: 768px) {
+    .shop-detail__tag {
+        font-size: 13px
+    }
+
+    .shop-detail__input-date {
+        width: 80%;
+    }
+
+    .shop-detail__container {
+        padding: 0;
+}
+
+    .shop-detail__content {
+        padding: 0;
+        gap: 10px;
+    }
+
+    .shop-detail__reservation-form {
+        margin-top: -70px;
+    }
+
+    .shop-detail__form-group input,select {
+    font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .shop-detail__name{
+    font-size: 16px;
+    }
+
+    .shop-detail__tag {
+        font-size: 10px
+    }
+
+    .shop-detail__info{
+        font-size: 13px;
+    }
+
+    .shop-detail__input-date {
+        width: 100%;
+    }
+
+    .shop-detail__container{
+        padding: 0;
+    }
+
+    .shop-detail__content{
+        padding: 0;
+        gap: 10px;
+        margin: 0;
+    }
+
+    .shop-detail__selected-shop-details {
+        padding: 5px;
+            /* 内側の余白を追加 */
+    }
+    .shop-detail__reservation-form {
+        padding: 5px;
+        margin-top: -50px;
+    }
+
+    .shop-detail__form-group input,select {
+    font-size: 10px;
+}
+}

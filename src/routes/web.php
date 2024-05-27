@@ -1,6 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ShopController;
+use App\Http\Controllers\RegisteredUserController;
+use App\Http\Controllers\AuthenticatedSessionController;
+use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\MypageController;
+use App\Http\Controllers\RatingController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +23,53 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', [ShopController::class, 'index'])->name('shops.index');
+Route::get('/shops/search', [ShopController::class, 'search'])->name('shops.search');
+Route::get('/shops/detail/{id}',  [ShopController::class, 'show'])->name('shops.detail');
+
+Route::get('/register', [RegisteredUserController::class, 'create'])->name('register');
+Route::post('/register', [RegisteredUserController::class, 'register'])->name('register.post');
+Route::get('/thanks', [RegisteredUserController::class, 'showThanks'])->name('thanks');
+
+Route::get('/login', [AuthenticatedSessionController::class, 'create'])->name('login');
+Route::post('/login', [AuthenticatedSessionController::class, 'store'])->name('login.post');
+Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/mypage', [MypageController::class, 'show'])->name('mypage');
+
+    Route::post('/reservations', [ReservationController::class, 'store'])->name('reservation.submit');
+    Route::get('/reservation/{id}', [ReservationController::class, 'show'])->name('reservation.show');
+
+    Route::get('/reservations/{id}', [ReservationController::class, 'detail'])->name('reservations.detail');
+
+    Route::get('/done', [ReservationController::class, 'done'])->name('done');
+    Route::post('/reservation/finalize', [ReservationController::class, 'finalize'])->name('reservation.finalize');
+    Route::get('/reservation/clear/{id}', [ReservationController::class, 'clearSession'])->name('reservation.clear');
+
+    Route::get('/reservations/{id}/edit', [ReservationController::class, 'edit'])->name('reservation.edit');
+    Route::put('/reservations/{id}', [ReservationController::class, 'update'])->name('reservation.update');
+    Route::patch('/reservation/{id}', [ReservationController::class, 'update'])->name('reservation.update');
+    Route::delete('/reservation/{id}', [ReservationController::class, 'delete'])->name('reservation.delete');
+
+    Route::post('/ratings', [RatingController::class, 'store'])->name('ratings.store');
+
+    Route::post('/favorite/toggle', [FavoriteController::class, 'toggle'])->name('favorite.toggle');});
+
+
+
+
+Route::get('/email/verify', function () {
+    return view('verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+    return redirect('/');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+    return back()->with('message', '確認リンクを再送信しました。');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');

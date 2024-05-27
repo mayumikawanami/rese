@@ -1,0 +1,221 @@
+.shop-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.shop-container__user-info{
+    font-size: 15px;
+    position: absolute;
+    right: 50px;
+    top: -10px;
+    color: rgb(78, 75, 75);
+}
+
+.shop-container__search-form {
+    width: 50%;
+    max-width: 700px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 7px;
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    margin-top: -70px;
+    margin-right: 40px;
+    border-radius: 10px;
+}
+
+.shop-container__form-group {
+    display: flex;
+}
+
+.shop-container__form-select {
+    font-size: 15px;
+    border: none;
+    margin-right: 5px;
+    border-right: 1px solid #ccc;
+    cursor: pointer;
+    background-image: url('/storage/images/select-button.svg');
+    background-repeat: no-repeat;
+    padding: 0 25px 0 10px;
+    background-position: right 10px top 50%;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+.shop-container__form-input {
+    width: 80px;
+    border: none;
+}
+
+.shop-container__search-button {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    color: #a7a2a2;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.shop-container__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 7px;
+}
+
+.shop-container__shop-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    /* 任意のギャップを設定 */
+    justify-content: space-between;
+    /* 子要素の間にスペースを均等に配分 */
+    margin: 20px 40px;
+}
+
+.shop-container__shop-item {
+    flex: 1 1 calc(25% - 20px);
+    /* 4つ並べるために25%の幅からギャップを引いた幅を設定 */
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.5);
+    border-radius: 10px;
+    background: white;
+}
+
+.shop-container__shop-img img {
+    width: 100%;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.shop-container__shop-content {
+    margin-left: 20px;
+    font-size: 13px;
+}
+
+.shop-container__shop-name {
+    margin: 20px 0 0;
+}
+
+.shop-container__shop-tag {
+    display: flex;
+    line-height: 1;
+}
+
+.shop-container__shop-area {
+    margin-right: 10px;
+}
+
+.shop-container__shop-details-with-favorite {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.shop-container__detail-link {
+    background: rgb(66, 101, 240);
+    color: white;
+    border-radius: 5px;
+    border: rgb(66, 101, 240);
+    padding: 8px 10px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.shop-container__favorite-button {
+    border: none;
+    padding: 5px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.shop-container__favorite-button--gray i {
+    font-size: 2.0em;
+    color: rgb(193, 188, 188);
+}
+
+.shop-container__favorite-button--red i {
+    font-size: 2.0em;
+    color: red;
+}
+
+.shop-container__alert {
+    font-size: 20px;
+    color: #fff;
+    background-color: rgb(67, 70, 233);
+    width: 30%;
+    text-align: center;
+    margin: 10px auto;
+    line-height: 100px;
+}
+
+.shop-container__alert--warning {
+    background-color: rgb(255, 0, 0);
+}
+
+.wrapper__alert-success{
+    color: #fff;
+    font-size: 15px;
+    background-color: rgb(245, 70, 70);
+    padding: 10px;
+    width: 35%;
+    margin-left: 30px;
+    text-align: center;
+}
+@media screen and (max-width: 768px) {
+    .shop-container__shop-item {
+        flex: 1 1 calc(33.33% - 20px);
+        /* 幅が狭くなった場合に3つ並べる */
+    }
+
+    .shop-container__shop-name {
+        font-size: 15px;
+    }
+
+    .shop-container__shop-tag {
+        font-size: 10px;
+    }
+
+    .shop-container__search-form {
+        width: 345px;
+        height: 25px;
+        margin-top: -30px;
+    }
+
+    .shop-container__detail-link {
+        font-size: 10px;
+    }
+
+    .shop-container__shop-wrapper {
+        margin: 5px 10px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .shop-container__shop-item {
+        flex: 1 1 calc(50% - 20px);
+        /* 幅がさらに狭くなった場合に2つ並べる */
+    }
+
+    .shop-container__search-form {
+        width: 345px;
+        height: 25px;
+        margin-top: -30px;
+        left: 0;
+    }
+    .shop-container__shop-wrapper{
+        margin: 5px 10px;
+    }
+
+}

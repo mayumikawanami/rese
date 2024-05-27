@@ -1,0 +1,220 @@
+.mypage__container {
+    padding: 20px;
+}
+
+.mypage__heading {
+    font-size: 24px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/*.mypage-content__title{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 200px;
+}*/
+
+/*予約状況*/
+.mypage__reservation-status table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.mypage__reservation-status th,
+.mypage__reservation-status td {
+    padding: 8px;
+    border: 1px solid #ccc;
+}
+
+/*お気に入り店舗*/
+/* 親コンテナをフレックスボックスにする */
+.mypage__content {
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 予約状況とお気に入り店舗をそれぞれ50%の幅に設定 */
+.mypage__reservation-status {
+    width: 48%;
+    box-sizing: border-box;
+    /* パディングや境界線を含めて幅を計算 */
+}
+
+/* 予約状況とお気に入り店舗をそれぞれ50%の幅に設定 */
+.mypage__favorite-shops {
+    width: 48%;
+    box-sizing: border-box;
+    /* パディングや境界線を含めて幅を計算 */
+}
+
+/* お気に入り店舗のラッパーをフレックスボックスにする */
+.mypage__favorite-shops {
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+.mypage__favorite-shop__wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.mypage__favorite-shop__item {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    width: calc(50% - 10px);
+    margin: 5px;
+}
+
+.mypage__favorite-shop__image img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.mypage__favorite-shop__content {
+    padding: 16px;
+    background-color: #fff;
+}
+
+.mypage__favorite-shop__tag {
+    display: flex;
+    gap: 8px;
+}
+
+.mypage__favorite-shop__details-with-favorite {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+}
+
+.mypage__favorite-shop__detail-link {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.mypage__favorite-shop__favorite-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.shop-container__favorite-button--red {
+    color: red;
+}
+
+.shop-container__favorite-button--gray {
+    color: gray;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.toggle-reservation:checked+.modal {
+    display: block;
+}
+
+
+/* 評価とコメントの追加フォームのスタイル */
+
+.mypage__rating-form {
+    margin-top: 20px;
+    /* 上部からの余白 */
+}
+
+.mypage__rating-form .mypage-content_title {
+    font-size: 20px;
+    /* タイトルのフォントサイズ */
+    margin-bottom: 10px;
+    /* タイトル下の余白 */
+}
+
+.mypage__rating-form form {
+    max-width: 600px;
+    /* フォームの最大幅 */
+    margin: auto;
+    /* 中央揃え */
+}
+
+.mypage__rating-form .form-group {
+    margin-bottom: 20px;
+    /* フォームグループ間の余白 */
+}
+
+.mypage__rating-form label {
+    display: block;
+    /* ラベルをブロック要素として表示 */
+    font-weight: bold;
+    /* フォントの太さ */
+    margin-bottom: 5px;
+    /* ラベル下の余白 */
+}
+
+.mypage__rating-form input[type="number"],
+.mypage__rating-form textarea,
+.mypage__rating-form select {
+    width: 100%;
+    /* 入力欄の幅を100%に */
+    padding: 10px;
+    /* 入力欄のパディング */
+    border: 1px solid #ccc;
+    /* 入力欄の境界線 */
+    border-radius: 5px;
+    /* 入力欄の角丸 */
+}
+
+.mypage__rating-form button {
+    padding: 10px 20px;
+    /* ボタンのパディング */
+    background-color: #007bff;
+    /* ボタンの背景色 */
+    color: #fff;
+    /* ボタンのテキスト色 */
+    border: none;
+    /* ボタンの境界線 */
+    border-radius: 5px;
+    /* ボタンの角丸 */
+    cursor: pointer;
+    /* カーソルをポインターに */
+}
+
+.mypage__rating-form button:hover {
+    background-color: #0056b3;
+    /* ホバー時の背景色 */
+}

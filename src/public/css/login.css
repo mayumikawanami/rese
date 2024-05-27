@@ -1,0 +1,100 @@
+.login-form {
+    width: 100%;
+    max-width: 450px;
+    margin: 100px auto;
+    border: 1px solid #ccc;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+.login-form__heading {
+    background-color: rgb(66, 101, 240);
+    color: #fff;
+    margin: 0 auto;
+    padding: 20px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    display: block;
+}
+
+.login-form__group {
+    position: relative;
+    margin-bottom: 40px;
+    /* エラーメッセージのスペースを確保 */
+}
+
+.login-form__form {
+    padding: 30px 30px 30px 20px;
+}
+
+.login-form__input {
+    width: calc(100% - 40px);
+    /* アイコンのスペースを考慮 */
+    margin-left: 40px;
+    /* アイコンのスペースを確保 */
+    border: none;
+    border-bottom: 1px solid #4f4e4e;
+    outline: none;
+    font-size: 16px;
+    padding-top: 10px;
+    color: #4f4e4e;
+}
+
+.login-form__input::placeholder {
+    padding-left: 0px;
+    color: #4f4e4e;
+}
+
+.login-form__input:focus {
+    border-bottom: 1px solid #333;
+    color: #4f4e4e;
+}
+
+.login-form__btn {
+    display: block;
+    margin-left: auto;
+    margin-top: 20px;
+    padding: 5px 15px;
+    background-color: rgb(66, 101, 240);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-form__btn:hover {
+    background-color: #005bb5;
+}
+
+.auth-icon {
+    position: absolute;
+    top: 60%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #4f4e4e;
+    font-size: 1.5em;
+}
+
+.auth-icon_key {
+    position: absolute;
+    top: 50%;
+    left: 7px;
+    width: 30px;
+    height: 30px;
+    background-image: url('/storage/images/lock-keyhole.svg');
+    background-size: contain;
+    border: none;
+    background-color: white;
+    background-repeat: no-repeat;
+    transform: translateY(-50%);
+}
+
+.login-form__error-message {
+    color: red;
+    font-size: 13px;
+    position: absolute;
+    left: 0;
+    margin: 0;
+}
