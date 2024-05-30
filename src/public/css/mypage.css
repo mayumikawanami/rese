@@ -1,71 +1,79 @@
 .mypage__container {
-    padding: 20px;
+    padding: 0 50px;
 }
 
 .mypage__heading {
     font-size: 24px;
-    margin: 0 auto;
     text-align: center;
 }
 
-/*.mypage-content__title{
-    display: flex;
-    justify-content: space-between;
-    margin-right: 200px;
-}*/
+.mypage-content__title{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.status-message{
+    position: absolute;
+    top: 120px;
+    background-color: #dd6a6a;
+    color: #fff;
+    padding: 10px;
+}
 
 /*予約状況*/
 .mypage__reservation-status table {
-    width: 100%;
+    width: 70%;
     border-collapse: collapse;
 }
 
-.mypage__reservation-status th,
-.mypage__reservation-status td {
-    padding: 8px;
-    border: 1px solid #ccc;
+.reservation-item {
+    padding: 10px;
+
+}
+
+.btn-primary{
+    cursor: pointer;
+    background-color: white;
+    padding: 5px;
 }
 
 /*お気に入り店舗*/
-/* 親コンテナをフレックスボックスにする */
 .mypage__content {
     display: flex;
     justify-content: space-between;
 }
-
-/* 予約状況とお気に入り店舗をそれぞれ50%の幅に設定 */
 .mypage__reservation-status {
-    width: 48%;
+    width: 40%;
     box-sizing: border-box;
-    /* パディングや境界線を含めて幅を計算 */
 }
 
-/* 予約状況とお気に入り店舗をそれぞれ50%の幅に設定 */
 .mypage__favorite-shops {
-    width: 48%;
+    width: 55%;
     box-sizing: border-box;
-    /* パディングや境界線を含めて幅を計算 */
 }
 
-/* お気に入り店舗のラッパーをフレックスボックスにする */
 .mypage__favorite-shops {
     display: flex;
     flex-wrap: wrap;
-
 }
 
 .mypage__favorite-shop__wrapper {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    gap: 20px;
 }
 
+/*.mypage__favorite-shop__wrapper:nth-child(n+4) {
+    clear: left;
+}*/
+
 .mypage__favorite-shop__item {
+    flex: 0 0 calc(50% - 20px);
+    max-width: calc(50% - 20px);
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
     overflow: hidden;
-    width: calc(50% - 10px);
     margin: 5px;
 }
 
@@ -75,68 +83,118 @@
 }
 
 .mypage__favorite-shop__content {
+    font-size: 13px;
     padding: 16px;
     background-color: #fff;
 }
 
+.mypage__favorite-shop__name{
+    margin: 0;
+}
+
 .mypage__favorite-shop__tag {
     display: flex;
-    gap: 8px;
+    line-height: 1;
+}
+
+.mypage__favorite-shop__area{
+    margin-right: 10px;
 }
 
 .mypage__favorite-shop__details-with-favorite {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 8px;
+    font-size: 13px;
 }
 
 .mypage__favorite-shop__detail-link {
+    background: rgb(66, 101, 240);
+    color: white;
+    border-radius: 5px;
+    border: rgb(66, 101, 240);
+    padding: 8px 10px;
     text-decoration: none;
-    color: #007bff;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
 }
 
 .mypage__favorite-shop__favorite-button {
     background: none;
     border: none;
     cursor: pointer;
+    padding: 5px;
 }
 
 .shop-container__favorite-button--red {
     color: red;
+    font-size: 2.0em;
 }
 
 .shop-container__favorite-button--gray {
     color: gray;
+    font-size: 2.0em;
 }
 
+/*モーダルウインドウ*/
 .modal {
-    display: none;
     position: fixed;
     z-index: 1;
     left: 0;
     top: 0;
-    width: 100%;
+    width: 45%;
     height: 100%;
+    background-color: unset;
+    padding-top: 200px;
     overflow: auto;
-    background-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.4);
-    padding-top: 60px;
 }
 
 .modal-content {
-    background-color: #fefefe;
+    background-color: #4455d9;
+    color: #fff;
     margin: 5% auto;
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
 }
 
+.modal__reservation-title{
+    margin-left: 30px;
+    margin-top: 0;
+    padding: 5px;
+}
+
+.shop-detail__reservation-status{
+    margin-bottom: 20px;
+}
+
+.mypage__reservation-status th,
+.mypage__reservation-status td {
+    padding: 8px;
+    border: none;
+    text-align: left;
+}
+
+.reservation__change-form{
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    line-height: 2;
+}
+
 .close {
-    color: #aaa;
+    color: #fff;
     float: right;
-    font-size: 28px;
-    font-weight: bold;
+    font-size: 16px;
+    position: relative;
+    top: -60px;
+    padding: 1px 4px;
+    border: 1.5px solid #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    line-height: 1;
+
 }
 
 .close:hover,
@@ -145,11 +203,25 @@
     text-decoration: none;
     cursor: pointer;
 }
+.toggle-reservation {
+    display: none;
+}
 
 .toggle-reservation:checked+.modal {
     display: block;
+    cursor: pointer;
 }
 
+.modal-icon_clock {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-image: url('https://rese-aws-bucket.s3.ap-northeast-1.amazonaws.com/image/clock.svg');
+    background-size: contain;
+    border: none;
+    background-repeat: no-repeat;
+    transform: translate(-40%);
+}
 
 /* 評価とコメントの追加フォームのスタイル */
 
@@ -218,3 +290,12 @@
     background-color: #0056b3;
     /* ホバー時の背景色 */
 }
+
+
+
+/* 2つの要素が横並びになるようにする
+@media screen and (max-width: 768px) {
+    .mypage__favorite-shop__item {
+        flex-basis: calc(50% - 10px);
+    }
+}*/

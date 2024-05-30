@@ -8,6 +8,7 @@ use App\Models\Shop;
 use App\Models\Reservation;
 
 
+
 class MypageController extends Controller
 {
     public function show (Request $request)
@@ -17,6 +18,7 @@ class MypageController extends Controller
         $user = Auth::user();
         $shops = $user->favorites;
         $reservations = $user->reservations;
+
 
         return view('mypage', compact('shops', 'reservations'));
     }

@@ -9,7 +9,23 @@
     <div class="shop-detail__content">
         @if($shop)
         <div class="shop-detail__selected-shop-details">
-            <h2 class="shop-detail__name">{{ $shop->shop_name }}</h2>
+            <div class="shop-detail__nav-buttons">
+                @if ($previousShop)
+                <a href="{{ route('shops.detail', ['id' => $previousShop->id]) }}" class="shop-detail__nav-button">&lt;</a>
+                @else
+                <span class="shop-detail__nav-button disabled">&lt;</span>
+                @endif
+
+                <h2 class="shop-detail__name">{{ $shop->shop_name }}</h2>
+
+                @if ($nextShop)
+                <a href="{{ route('shops.detail', ['id' => $nextShop->id]) }}" class="shop-detail__nav-button">&gt;</a>
+                @else
+                <span class="shop-detail__nav-button disabled">&gt;</span>
+                @endif
+            </div>
+
+
             <img class="shop-detail__img" src="{{ $shop->photo_url }}" alt="{{ $shop->shop_name }}">
             <div class="shop-detail__tag">
                 <p class="shop-detail__area">#{{ $shop->area }}</p>

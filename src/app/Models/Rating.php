@@ -10,19 +10,18 @@ class Rating extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
-        'shop_id',
+        'reservation_id',
         'rating',
-        'comment'
+        'comment',
     ];
+
+    public function reservation()
+    {
+        return $this->belongsTo(Reservation::class);
+    }
 
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function shop()
-    {
-        return $this->belongsTo(Shop::class);
     }
 }

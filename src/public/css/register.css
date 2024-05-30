@@ -83,7 +83,7 @@
     left: 7px;
     width: 30px;
     height: 30px;
-    background-image: url('/storage/images/lock-keyhole.svg');
+    background-image: url('https://rese-aws-bucket.s3.ap-northeast-1.amazonaws.com/image/lock-keyhole.svg');
     background-size: contain;
     border: none;
     background-color: white;

@@ -47,7 +47,12 @@ class ShopController extends Controller
 
     public function show($id)
     {
-        $shop = Shop::find($id);
-        return view('detail', compact('shop'));
+        $shop = Shop::findOrFail($id);
+
+        // 前後の店舗を取得
+        $previousShop = Shop::where('id', '<', $shop->id)->orderBy('id', 'desc')->first();
+        $nextShop = Shop::where('id', '>', $shop->id)->orderBy('id', 'asc')->first();
+
+        return view('detail', compact('shop', 'previousShop', 'nextShop'));
     }
 }

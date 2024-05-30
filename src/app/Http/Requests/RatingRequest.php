@@ -24,16 +24,19 @@ class RatingRequest extends FormRequest
     public function rules()
     {
         return [
+            'reservation_id' => 'required|exists:reservations,id',
             'rating' => 'required|integer|min:1|max:5',
-            'shop_id' => 'required|exists:shops,id',
+            'comment' => 'nullable|string|max:255',
         ];
     }
 
     public function messages()
     {
         return [
-            'rating.required' => '評価を５段階で入力して下さい',
-
+            'reservation_id.required' => '予約を選択してください',
+            'rating.required' => '評価を選択してください',
+            'comment.string' => 'コメントを文字列で入力してください',
+            'comment.max:255' => 'コメントは255文字以下で入力してください',
         ];
     }
 }

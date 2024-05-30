@@ -15,14 +15,12 @@ class CreateRatingsTable extends Migration
     {
         Schema::create('ratings', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('shop_id');
+            $table->unsignedBigInteger('reservation_id');
             $table->integer('rating'); // 1から5の評価
             $table->text('comment')->nullable();
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('shop_id')->references('id')->on('shops')->onDelete('cascade');
+            $table->foreign('reservation_id')->references('id')->on('reservations')->onDelete('cascade');
         });
     }
 
@@ -33,6 +31,10 @@ class CreateRatingsTable extends Migration
      */
     public function down()
     {
+        Schema::table('ratings', function (Blueprint $table) {
+            $table->dropForeign(['reservation_id']);
+        });
+
         Schema::dropIfExists('ratings');
     }
 }

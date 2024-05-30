@@ -7,6 +7,6 @@
 @section('content')
 <div class="done-container">
     <h2 class="done-heading">ご予約ありがとうございます</h2>
-    <button onclick="window.location='{{ url()->previous() }}'" class="">戻る</button>
+    <button onclick="window.location='{{ url()->previous() }}'" class="back-button">戻る</button>
 </div>
 @endsection

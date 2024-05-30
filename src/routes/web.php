@@ -53,9 +53,12 @@ Route::middleware(['auth'])->group(function () {
     Route::patch('/reservation/{id}', [ReservationController::class, 'update'])->name('reservation.update');
     Route::delete('/reservation/{id}', [ReservationController::class, 'delete'])->name('reservation.delete');
 
-    Route::post('/ratings', [RatingController::class, 'store'])->name('ratings.store');
+    Route::post('/favorite/toggle', [FavoriteController::class, 'toggle'])->name('favorite.toggle');
 
-    Route::post('/favorite/toggle', [FavoriteController::class, 'toggle'])->name('favorite.toggle');});
+    Route::get('/mypage', [RatingController::class, 'showMypage'])->name('mypage');
+    Route::post('/ratings/store', [RatingController::class, 'store'])->name('ratings.store');
+
+});
 
 
 
