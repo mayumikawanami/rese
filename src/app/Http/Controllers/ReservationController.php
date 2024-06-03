@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Reservation;
 use App\Models\Shop;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\URL;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use App\Http\Requests\ReservationRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class ReservationController extends Controller
 {
@@ -70,18 +73,22 @@ class ReservationController extends Controller
     public function show($id)
     {
         // セッションから予約情報を取得
-        $reservationDetails = session('reservation_details');
-        $shop = Shop::find($id);
+        //$reservationDetails = session('reservation_details');
+        //$shop = Shop::find($id);
         // 予約情報があれば該当の予約を取得
-        $reservation = null;
-        $shop = null;
-        if ($reservationDetails && isset($reservationDetails['reservation_id'])) {
-            $reservation = Reservation::find($reservationDetails['reservation_id']);
-            // 必要なショップデータを取得
-            $shop = Shop::find($reservationDetails['shop_id']);
-        }
+        //$reservation = null;
+        //$shop = null;
+        //if ($reservationDetails && isset($reservationDetails['reservation_id'])) {
+        //$reservation = Reservation::find($reservationDetails['reservation_id']);
+        // 必要なショップデータを取得
+        //$shop = Shop::find($reservationDetails['shop_id']);
+        //}
 
-        return view('detail', compact('reservation','reservationDetails','shop'));
+        //return view('detail', compact('reservation','reservationDetails','shop'));
+        $reservation = Reservation::findOrFail($id);
+        $shop = Shop::findOrFail($reservation->shop_id);
+
+        return view('detail', compact('reservation', 'shop'));
     }
 
     // 予約一覧の表示
@@ -105,15 +112,6 @@ class ReservationController extends Controller
         // ユーザーIDを取得
         $userId = Auth::id();
 
-        /* 予約データを保存
-        $reservation = new Reservation();
-        $reservation->user_id = $userId;
-        $reservation->shop_id = $request->shop_id;
-        $reservation->reservation_date = $request->date;
-        $reservation->reservation_time = $request->time;
-        $reservation->number = $request->number;
-        $reservation->save();*/
-
         // 予約情報をセッションに保存
         $reservationDetails = [
             'shop_id' => $request->shop_id,
@@ -124,9 +122,29 @@ class ReservationController extends Controller
 
         session(['reservation_details' => $reservationDetails]);
 
+        // 予約データを保存
+        $reservation = new Reservation();
+        $reservation->user_id = $userId;
+        $reservation->shop_id = $reservationDetails['shop_id'];
+        $reservation->reservation_date = $reservationDetails['reservation_date'];
+        $reservation->reservation_time = $reservationDetails['reservation_time'];
+        $reservation->number = $reservationDetails['number'];
+        $reservation->save();
+
+        // QRコード生成
+        $qrCodeData = URL::to('/reservations/' . $reservation->id);
+        $qrCode = QrCode::format('svg')->generate($qrCodeData);
+        $qrCodePath = 'qr-codes/' . $reservation->id . '.png';
+        Storage::put($qrCodePath, $qrCode);
+
+        // QRコードのパスを保存
+        $reservation->qr_code = $qrCodePath;
+        $reservation->save();
+
+
         return redirect()->route('shops.detail', ['id' => $request->shop_id])
         ->with('status', 'よろしければ「予約を確定する」をクリックしてください。')
-        ->withInput(); // リダイレクト時に入力値を保持する;
+        ->withInput();
     }
 
     public function clearSession(Request $request, $id)
@@ -209,6 +227,7 @@ class ReservationController extends Controller
             'number' => $reservation->number,
         ];
         session(['reservation_details' => $reservationDetails]);
+
         return redirect()->route('shops.detail', ['id' => $request->shop_id]);
     }
 

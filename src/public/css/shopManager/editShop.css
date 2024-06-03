@@ -1,0 +1,71 @@
+/* コンテナ */
+.edit-shop__container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* タイトル */
+.edit-shop__container-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* フォームのラベル */
+.form-group label {
+    font-weight: bold;
+}
+
+/* 入力フィールド */
+.form-control {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* セレクトボックス */
+select.form-control {
+    height: 40px;
+}
+
+/* ボタン */
+.edit-shop__button{
+    display: flex;
+    flex-direction: column;
+}
+
+.primary-button {
+    padding: 13px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 17px;
+}
+
+.back-button{
+    padding: 11px 28px;
+    border: none;
+    text-decoration: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: darkgray;
+    color: black;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 17px;
+}
+
+/* アラートメッセージ */
+.edit-shop__alert-success {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    border-radius: 5px;
+}

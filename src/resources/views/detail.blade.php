@@ -24,8 +24,6 @@
                 <span class="shop-detail__nav-button disabled">&gt;</span>
                 @endif
             </div>
-
-
             <img class="shop-detail__img" src="{{ $shop->photo_url }}" alt="{{ $shop->shop_name }}">
             <div class="shop-detail__tag">
                 <p class="shop-detail__area">#{{ $shop->area }}</p>

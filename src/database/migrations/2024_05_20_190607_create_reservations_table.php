@@ -23,6 +23,7 @@ class CreateReservationsTable extends Migration
             $table->time('reservation_time')->nullable();
             $table->integer('number')->nullable();
             $table->string('status')->nullable();
+            $table->string('qr_code')->nullable();
             $table->timestamps();
         });
     }
@@ -34,6 +35,8 @@ class CreateReservationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reservations');
+        Schema::table('reservations', function (Blueprint $table) {
+            $table->dropColumn('qr_code');
+        });
     }
 }

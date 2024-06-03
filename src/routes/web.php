@@ -10,6 +10,8 @@ use App\Http\Controllers\MypageController;
 use App\Http\Controllers\RatingController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\ShopManagerController;
 
 
 /*
@@ -60,7 +62,20 @@ Route::middleware(['auth'])->group(function () {
 
 });
 
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::post('/admin/shop-managers', [AdminController::class, 'createShopManager'])->name('admin.createShopManager');
+});
 
+Route::middleware(['auth', 'role:shop_manager'])->group(function () {
+    Route::get('/shop-manager', [ShopManagerController::class, 'index'])->name('shopManager.dashboard');
+    Route::get('/shop-manager/shops', [ShopManagerController::class, 'showShops'])->name('shopManager.shops');
+    Route::post('/shop-manager/shops', [ShopManagerController::class, 'storeShop'])->name('shopManager.storeShop');
+    Route::get('/shop-manager/shops/{id}/edit', [ShopManagerController::class, 'editShop'])->name('shopManager.editShop');
+    Route::put('/shop-manager/shops/{id}', [ShopManagerController::class, 'updateShop'])->name('shopManager.updateShop');
+    Route::get('/shop-manager/reservations', [ShopManagerController::class, 'showReservations'])->name('shopManager.reservations');
+    Route::post('/shop-manager/send-notification-mail', [ShopManagerController::class, 'sendNotificationMail'])->name('shopManager.sendNotificationMail');
+});
 
 
 Route::get('/email/verify', function () {

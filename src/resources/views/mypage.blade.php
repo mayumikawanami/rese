@@ -9,7 +9,7 @@
     @if(auth()->check())
     <h2 class="mypage__heading">{{ auth()->user()->name }}さん</h2>
     <div class="mypage__content">
-p        <div class="mypage__reservation-status">
+        <div class="mypage__reservation-status">
             <p class="mypage-content__title">予約状況</p>
             <!-- 予約情報表示部分 -->
             @forelse ($reservationsWithStatus as $index => $reservation)
@@ -38,6 +38,10 @@ p        <div class="mypage__reservation-status">
                             <tr>
                                 <th class="shop-detail__reservation-status-item">Number</th>
                                 <td class="td-item">{{ $reservation['number'] }}人</td>
+                            </tr>
+                            <tr>
+                                <th class="shop-detail__reservation-status-item"></th>
+                                <td class="td-item"><img src="{{ Storage::url($reservation->qr_code) }}" alt="QR Code"></td>
                             </tr>
                         </table>
                         <div class="reservation__change-form">

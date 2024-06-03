@@ -41,11 +41,16 @@
                     <button class="logout-button" type="submit">Logout</button>
                 </form>
                 <li class="modal__list-item"><a href="/mypage">Mypage</a></li>
+                @if(Auth::user()->hasRole('shop_manager'))
+                <li class="modal__list-item"><a href="/shop-manager">Shop Manager page</a></li>
+                @endif
+                @if(Auth::user()->hasRole('admin'))
+                <li class="modal__list-item"><a href="/admin">admin page</a></li>
+                @endif
             </ul>
             @endif
             <label for="modal-toggle" class="modal__close-btn">×</label>
         </div>
-
     </div>
 </body>
 

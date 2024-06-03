@@ -76,7 +76,7 @@
     flex-wrap: wrap;
     gap: 20px;
     /* 任意のギャップを設定 */
-    justify-content: space-between;
+    justify-content: space-evenly;
     /* 子要素の間にスペースを均等に配分 */
     margin: 20px 40px;
 }
@@ -84,6 +84,7 @@
 .shop-container__shop-item {
     flex: 1 1 calc(25% - 20px);
     /* 4つ並べるために25%の幅からギャップを引いた幅を設定 */
+    max-width: calc(22%);
     box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.5);
     border-radius: 10px;
     background: white;

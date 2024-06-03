@@ -179,6 +179,20 @@
     text-align: center;
 }
 
+.shop-detail__finalize-button{
+    padding: 10px 30px;
+    width: 100%;
+    margin-bottom: 30px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.btn-secondary{
+    text-decoration: none;
+    background-color: darkgrey;
+    padding: 10px 30px;
+    color: unset;
+}
 
 @media screen and (max-width: 768px) {
     .shop-detail__tag {
