@@ -41,7 +41,13 @@
                             </tr>
                             <tr>
                                 <th class="shop-detail__reservation-status-item"></th>
-                                <td class="td-item"><img src="{{ Storage::url($reservation->qr_code) }}" alt="QR Code"></td>
+                                <td class="td-item">
+                                    @if (Storage::exists($reservation->qr_code))
+                                        {!! Storage::get($reservation->qr_code) !!}
+                                    @else
+                                        <p>QRコードが見つかりません。</p>
+                                    @endif
+                                </td>
                             </tr>
                         </table>
                         <div class="reservation__change-form">

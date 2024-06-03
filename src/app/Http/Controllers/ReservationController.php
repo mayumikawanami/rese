@@ -122,29 +122,39 @@ class ReservationController extends Controller
 
         session(['reservation_details' => $reservationDetails]);
 
-        // 予約データを保存
-        $reservation = new Reservation();
-        $reservation->user_id = $userId;
-        $reservation->shop_id = $reservationDetails['shop_id'];
-        $reservation->reservation_date = $reservationDetails['reservation_date'];
-        $reservation->reservation_time = $reservationDetails['reservation_time'];
-        $reservation->number = $reservationDetails['number'];
-        $reservation->save();
-
-        // QRコード生成
-        $qrCodeData = URL::to('/reservations/' . $reservation->id);
-        $qrCode = QrCode::format('svg')->generate($qrCodeData);
-        $qrCodePath = 'qr-codes/' . $reservation->id . '.png';
-        Storage::put($qrCodePath, $qrCode);
-
-        // QRコードのパスを保存
-        $reservation->qr_code = $qrCodePath;
-        $reservation->save();
-
 
         return redirect()->route('shops.detail', ['id' => $request->shop_id])
         ->with('status', 'よろしければ「予約を確定する」をクリックしてください。')
         ->withInput();
+    }
+
+    public function submitForm(ReservationRequest $request)
+    {
+        if (!Auth::check()) {
+            return redirect()->route('login')->with('message', '予約をするにはログインが必要です。');
+        }
+        // フォームから送信された値をセッションに保存
+        $request->session()->put('form_data', $request->all());
+
+        // 予約情報をセッションに保存
+        $reservation = new Reservation();
+        $reservation->user_id = Auth::id();
+        $reservation->shop_id = $request->shop_id;
+        $reservation->reservation_date = $request->date;
+        $reservation->reservation_time = $request->time;
+        $reservation->number = $request->number;
+        $reservation->save();
+
+        $shop = Shop::find($reservation->shop_id);
+        $reservationDetails = [
+            'shop_name' => $shop->shop_name,
+            'reservation_date' => $reservation->reservation_date,
+            'reservation_time' => $reservation->reservation_time,
+            'number' => $reservation->number,
+        ];
+        session(['reservation_details' => $reservationDetails]);
+
+        return redirect()->route('shops.detail', ['id' => $request->shop_id]);
     }
 
     public function clearSession(Request $request, $id)
@@ -189,6 +199,16 @@ class ReservationController extends Controller
         $reservation->number = $reservationDetails['number'];
         $reservation->save();
 
+        // QRコード生成
+        $qrCodeData = URL::to('/reservations/' . $reservation->id);
+        $qrCode = QrCode::format('svg')->generate($qrCodeData);
+        $qrCodePath = 'qr-codes/' . $reservation->id . '.svg';
+        Storage::put($qrCodePath, $qrCode);
+
+        // QRコードのパスを保存
+        $reservation->qr_code = $qrCodePath;
+        $reservation->save();
+
     // セッションから予約情報を削除
     session()->forget('reservation_details');
 
@@ -202,34 +222,7 @@ class ReservationController extends Controller
         return view('done');
     }
 
-    public function submitForm(ReservationRequest $request)
-    {
-        if (!Auth::check()) {
-            return redirect()->route('login')->with('message', '予約をするにはログインが必要です。');
-        }
-        // フォームから送信された値をセッションに保存
-        $request->session()->put('form_data', $request->all());
 
-        // 予約情報をセッションに保存
-        $reservation = new Reservation();
-        $reservation->user_id = Auth::id();
-        $reservation->shop_id = $request->shop_id;
-        $reservation->reservation_date = $request->date;
-        $reservation->reservation_time = $request->time;
-        $reservation->number = $request->number;
-        $reservation->save();
-
-        $shop = Shop::find($reservation->shop_id);
-        $reservationDetails = [
-            'shop_name' => $shop->shop_name,
-            'reservation_date' => $reservation->reservation_date,
-            'reservation_time' => $reservation->reservation_time,
-            'number' => $reservation->number,
-        ];
-        session(['reservation_details' => $reservationDetails]);
-
-        return redirect()->route('shops.detail', ['id' => $request->shop_id]);
-    }
 
     public function detail($id)
     {
@@ -240,4 +233,9 @@ class ReservationController extends Controller
     }
 
 
+
+    
 }
+
+
+
