@@ -21,6 +21,10 @@
     justify-content: space-around;
 }
 
+.btn-primary{
+    margin: 10px;
+}
+
 .shop-manager__container-link a {
     width: 45%;
     text-align: center;

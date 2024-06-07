@@ -11,6 +11,7 @@
         <div class="shop-manager__container-link">
             <a href="{{ route('shopManager.shops') }}" class="btn btn-primary">店舗情報の作成</a>
             <a href="{{ route('shopManager.reservations') }}" class="btn btn-primary">予約情報を確認</a>
+            <a href="{{ route('shopManager.scan.form') }}" class="btn btn-primary">予約を照合する</a>
         </div>
     </div>
     <div class="notification-mail__container">

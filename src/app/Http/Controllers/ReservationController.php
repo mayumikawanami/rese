@@ -209,11 +209,11 @@ class ReservationController extends Controller
         $reservation->qr_code = $qrCodePath;
         $reservation->save();
 
-    // セッションから予約情報を削除
-    session()->forget('reservation_details');
+        // セッションから予約情報を削除
+        session()->forget('reservation_details');
 
-    // 予約完了ページにリダイレクトし、予約とショップの情報をセッションに渡す
-    return redirect()->route('done');
+        // 予約完了ページにリダイレクトし、予約とショップの情報をセッションに渡す
+        return redirect()->route('done');
 
     }
 
@@ -231,11 +231,8 @@ class ReservationController extends Controller
 
         return view('detail', compact('reservation', 'shop'));
     }
-
-
-
-    
 }
+
 
 
 

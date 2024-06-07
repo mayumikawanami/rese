@@ -75,6 +75,9 @@ Route::middleware(['auth', 'role:shop_manager'])->group(function () {
     Route::put('/shop-manager/shops/{id}', [ShopManagerController::class, 'updateShop'])->name('shopManager.updateShop');
     Route::get('/shop-manager/reservations', [ShopManagerController::class, 'showReservations'])->name('shopManager.reservations');
     Route::post('/shop-manager/send-notification-mail', [ShopManagerController::class, 'sendNotificationMail'])->name('shopManager.sendNotificationMail');
+
+    Route::get('/shop-manager/scan', [ShopManagerController::class, 'showScanForm'])->name('shopManager.scan.form');
+    Route::post('/shop-manager/scan', [ShopManagerController::class, 'scanQrCode'])->name('shopManager.scan.qrcode');
 });
 
 

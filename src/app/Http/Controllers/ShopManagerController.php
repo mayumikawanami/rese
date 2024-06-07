@@ -29,7 +29,7 @@ class ShopManagerController extends Controller
             'area' => 'required|string|max:255',
             'genre' => 'required|string|max:255',
             'info' => 'required|string',
-            'phto_url' => 'required|url',
+            'photo_url' => 'required|url',
         ]);
 
         $shop = new Shop([
@@ -103,6 +103,30 @@ class ShopManagerController extends Controller
         Mail::to($email)->send(new NotificationMail($content));
 
         return redirect()->route('shopManager.dashboard')->with('status', 'お知らせメールを送信しました');
+    }
+
+    // スキャンフォームを表示
+    public function showScanForm()
+    {
+        return view('shopManager.scan');
+    }
+
+    // QRコードをスキャンして予約を確認
+    public function scanQrCode(Request $request)
+    {
+        $qrCodeData = $request->input('qr_code_data');
+
+        // QRコードのデータから予約IDを取得
+        $reservationId = basename($qrCodeData);
+
+        // データベースで予約を検索
+        $reservation = Reservation::find($reservationId);
+
+        if ($reservation) {
+            return view('shopManager.scan', ['reservation' => $reservation, 'message' => '予約が見つかりました。']);
+        } else {
+            return view('shopManager.scan', ['error' => '予約が見つかりません。']);
+        }
     }
 
 }
