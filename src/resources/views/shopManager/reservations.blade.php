@@ -14,6 +14,7 @@
                 <th>予約日</th>
                 <th>予約時間</th>
                 <th>人数</th>
+                <th>ステータス</th>
             </tr>
         </thead>
         <tbody>
@@ -23,6 +24,7 @@
                 <td>{{ $reservation->reservation_date }}</td>
                 <td>{{ $reservation->reservation_time }}</td>
                 <td>{{ $reservation->number }}</td>
+                <td>{{ $reservation->status }}</td>
             </tr>
             @endforeach
         </tbody>
