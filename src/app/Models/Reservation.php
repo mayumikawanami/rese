@@ -11,6 +11,12 @@ class Reservation extends Model
 {
     use HasFactory;
 
+    // テーブル名を指定（デフォルトは 'reservations'）
+    protected $table = 'reservations';
+
+    // 主キーを指定（デフォルトは 'id'）
+    protected $primaryKey = 'id';
+
     protected $fillable = [
         'user_id',
         'shop_id',

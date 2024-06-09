@@ -26,6 +26,7 @@
         // Handle on success condition with the decoded text or result.
         console.log(`Scan result: ${decodedText}`);
         document.getElementById('qr_code_data').value = decodedText;
+        console.log(`QR Code Data: ${document.getElementById('qr_code_data').value}`);
         document.getElementById('qr-code-form').submit();
     }
 
@@ -44,14 +45,20 @@
         }
     };
 
-    // Start scanning.
     html5QrCode.start({
             facingMode: "environment"
-        }, // Alternatively use { facingMode: "user" }
-        config,
-        onScanSuccess,
-        onScanFailure
-    );
+        }, config, onScanSuccess, onScanFailure)
+        .catch(err => {
+            console.error(`Unable to start scanning, error: ${err}`);
+        });
+    // Start scanning.
+    //html5QrCode.start({
+    //facingMode: "environment"
+    //}, // Alternatively use { facingMode: "user" }
+    //config,
+    //onScanSuccess,
+    //onScanFailure
+    //);
 </script>
 <div class="scan-container__button">
     <a class="back-button" href="{{ route('shopManager.dashboard') }}">戻る</a>
