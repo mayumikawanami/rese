@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Mail\ReservationReminder;
+use Illuminate\Support\Facades\Mail;
 
 class Reservation extends Model
 {
@@ -26,5 +28,17 @@ class Reservation extends Model
     public function shop()
     {
         return $this->belongsTo(Shop::class);
+    }
+
+    // 予約のリマインダーメールを送信するメソッド
+    public static function sendDailyReminders()
+    {
+        // 明日の予約を取得
+        $reservations = self::whereDate('reservation_date', '=', now()->addDay()->toDateString())->get();
+
+        foreach ($reservations as $reservation) {
+            // リマインダーメールを送信
+            Mail::to($reservation->user->email)->send(new ReservationReminder($reservation));
+        }
     }
 }

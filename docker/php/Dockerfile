@@ -31,4 +31,10 @@ RUN curl -sS https://getcomposer.org/installer | php \
   && mv composer.phar /usr/local/bin/composer \
   && composer self-update
 
+# Dockerfile内でのタスクスケジューラーの実行
+RUN apt-get update && apt-get install -y cron
+
+#タスクスケジューラーの実行
+CMD ["cron", "-f"]
+
 WORKDIR /var/www
