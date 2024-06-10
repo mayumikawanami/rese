@@ -41,6 +41,7 @@
                     <button class="logout-button" type="submit">Logout</button>
                 </form>
                 <li class="modal__list-item"><a href="/mypage">Mypage</a></li>
+                <li class="modal__list-item"><a href="{{ route('pay.form') }}">Pay</a></li>
                 @if(Auth::user()->hasRole('shop_manager'))
                 <li class="modal__list-item"><a href="/shop-manager">Shop Manager page</a></li>
                 @endif

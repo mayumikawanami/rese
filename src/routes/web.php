@@ -12,6 +12,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ShopManagerController;
+use App\Http\Controllers\CheckoutController;
 
 
 /*
@@ -60,6 +61,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/mypage', [RatingController::class, 'showMypage'])->name('mypage');
     Route::post('/ratings/store', [RatingController::class, 'store'])->name('ratings.store');
 
+    Route::post('/create-checkout-session', [CheckoutController::class, 'createCheckoutSession'])->name('create-checkout-session');
+    Route::get('/pay', [CheckoutController::class, 'showPayForm'])->name('pay.form');
+
+    Route::get('/success', [CheckoutController::class, 'success'])->name('checkout.success');
+    Route::get('/cancel', [CheckoutController::class, 'cancel'])->name('checkout.cancel');
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
