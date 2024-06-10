@@ -46,5 +46,6 @@ class Reservation extends Model
             // リマインダーメールを送信
             Mail::to($reservation->user->email)->send(new ReservationReminder($reservation));
         }
+
     }
 }
