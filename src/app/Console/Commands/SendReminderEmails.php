@@ -40,9 +40,9 @@ class SendReminderEmails extends Command
      */
     public function handle()
     {
-        // 予約日が明日の予約を取得
-        $tomorrow = now()->addDay();
-        $reservations = Reservation::whereDate('reservation_date', $tomorrow)->get();
+        // 予約日が今日の予約を取得
+        $today = now()->startOfDay();
+        $reservations = Reservation::whereDate('reservation_date', $today)->get();
 
         // 各予約にリマインダーメールを送信
         foreach ($reservations as $reservation) {

@@ -17,7 +17,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->call(function () {
             \App\Models\Reservation::sendDailyReminders();
-        })->dailyAt('17:00');
+        })->dailyAt('7:00');
     }
 
     /**

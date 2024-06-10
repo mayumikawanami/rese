@@ -39,8 +39,8 @@ class Reservation extends Model
     // 予約のリマインダーメールを送信するメソッド
     public static function sendDailyReminders()
     {
-        // 明日の予約を取得
-        $reservations = self::whereDate('reservation_date', '=', now()->addDay()->toDateString())->get();
+        // 今日の予約を取得
+        $reservations = self::whereDate('reservation_date', '=', now()->toDateString())->get();
 
         foreach ($reservations as $reservation) {
             // リマインダーメールを送信
