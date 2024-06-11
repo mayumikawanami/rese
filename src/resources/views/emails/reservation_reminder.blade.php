@@ -8,7 +8,7 @@
 <body>
     <h1>予約リマインダー</h1>
     <p>こんにちは、{{ $reservation->user->name }}さん。</p>
-    <p>明日の予約情報をお知らせします。</p>
+    <p>今日の予約情報をお知らせします。</p>
     <ul>
         <li>ショップ名: {{ $reservation->shop->shop_name }}</li>
         <li>予約日: {{ $reservation->reservation_date }}</li>

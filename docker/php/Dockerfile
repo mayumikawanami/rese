@@ -34,6 +34,13 @@ RUN curl -sS https://getcomposer.org/installer | php \
 # Dockerfile内でのタスクスケジューラーの実行
 RUN apt-get update && apt-get install -y cron
 
+# cronジョブを追加
+COPY cron_job /etc/cron.d/cron_job
+RUN chmod 0644 /etc/cron.d/cron_job
+
+# cronの設定を反映
+RUN crontab /etc/cron.d/cron_job
+
 #タスクスケジューラーの実行
 CMD ["cron", "-f"]
 
