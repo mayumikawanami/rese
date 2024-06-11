@@ -7,7 +7,12 @@ use Illuminate\Http\Request;
 use App\Models\Shop;
 use App\Models\Reservation;
 use App\Mail\NotificationMail;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use Illuminate\Support\Facades\URL;
+use App\Mail\ReservationConfirmed;
 
 class ShopManagerController extends Controller
 {
@@ -128,7 +133,7 @@ class ShopManagerController extends Controller
             Log::info('予約が見つかりました: ' . $reservation->id);
 
             // ステータスを来店済みに更新
-            $reservation->status = 'Checked In';
+            $reservation->status = '来店済み';
             $reservation->save();
 
             // 予約が見つかった場合は、reservations.blade.php を表示する
@@ -138,6 +143,40 @@ class ShopManagerController extends Controller
             // 予約が見つからなかった場合は、エラーメッセージを表示する
             return view('shopManager.scan', ['error' => '予約が見つかりません。']);
         }
+    }
+
+    public function generateQrCode($reservationId)
+    {
+        $reservation = Reservation::find($reservationId);
+        if ($reservation && $reservation->status == '予約確定') {
+            $qrCodeData = URL::to('/reservations/' . $reservation->id);
+            $qrCode = QrCode::format('svg')->generate($qrCodeData);
+            $qrCodePath = 'qr-codes/' . $reservation->id . '.svg';
+            Storage::put($qrCodePath, $qrCode);
+
+            // QRコードのパスを保存
+            $reservation->qr_code = $qrCodePath;
+            $reservation->save();
+        }
+        return back();
+    }
+
+    public function confirmReservation(Request $request, $id)
+    {
+        $reservation = Reservation::findOrFail($id);
+
+        if ($reservation->status == '予約確定待ち') {
+            // ステータスを予約確定に更新
+            $reservation->status = '予約確定';
+            $reservation->save();
+
+            // ユーザーに予約確定のメールを送信
+            Mail::to($reservation->user->email)->send(new ReservationConfirmed($reservation));
+
+            return redirect()->route('shopManager.reservations')->with('message', '予約が確定され、通知メールが送信されました。');
+        }
+
+        return redirect()->route('shopManager.reservations')->with('error', '予約の確定に失敗しました。');
     }
 
 }

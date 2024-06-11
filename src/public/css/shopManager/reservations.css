@@ -40,6 +40,43 @@
     background-color: #ddd;
 }
 
+.confirm-button,
+.issue-button {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.confirm-button:hover,
+.issue-button:hover {
+    background-color: #0056b3;
+}
+
+.reissue-button {
+    font-size: 12px;
+    border: none;
+    border-radius: 4px;
+    background-color: #0d4286;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.reissue-button:hover {
+    background-color: #496488;
+}
+
+.confirm-status {
+    font-weight: bold;
+    font-size: 14px;
+    color: green;
+    margin: 0;
+}
+
 .reservations-button {
     text-align: center;
     margin-top: 20px;
@@ -57,4 +94,13 @@
 
 .back-button:hover {
     background-color: #45a049;
+}
+
+.alert-success,
+.alert-danger {
+    background-color: #dd6a6a;
+    color: #fff;
+    padding: 10px;
+    width: 50%;
+    text-align: center;
 }

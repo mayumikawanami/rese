@@ -84,6 +84,10 @@ Route::middleware(['auth', 'role:shop_manager'])->group(function () {
 
     Route::get('/shop-manager/scan', [ShopManagerController::class, 'showScanForm'])->name('shopManager.scan.form');
     Route::post('/shop-manager/scan', [ShopManagerController::class, 'scanQrCode'])->name('shopManager.scan.qrcode');
+    Route::post('/shopManager/confirmReservation/{id}', [ShopManagerController::class, 'confirmReservation'])->name('shopManager.confirmReservation');
+    Route::post('/shopManager/generateQrCode/{id}', [ShopManagerController::class, 'generateQrCode'])->name('shopManager.generateQrCode');
+    Route::post('/shopManager/confirmReservation/{id}', [ShopManagerController::class, 'confirmReservation'])->name('shopManager.confirmReservation');
+
 });
 
 

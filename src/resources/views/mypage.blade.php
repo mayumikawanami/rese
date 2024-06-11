@@ -40,12 +40,24 @@
                                 <td class="td-item">{{ $reservation['number'] }}人</td>
                             </tr>
                             <tr>
-                                <th class="shop-detail__reservation-status-item"></th>
+                                <th class="shop-detail__reservation-status-item">Status</th>
+                                <td class="td-item">{{ $reservation['status'] }}</td>
+                            </tr>
+                            <tr>
+                                <!-- <th class="shop-detail__reservation-status-item"></th>
                                 <td class="td-item">
                                     @if (Storage::exists($reservation->qr_code))
                                     {!! Storage::get($reservation->qr_code) !!}
                                     @else
                                     <p>QRコードが見つかりません。</p>
+                                    @endif
+                                </td> -->
+                                <th class="shop-detail__reservation-status-item">QR Code</th>
+                                <td class="td-item">
+                                    @if ($reservation->qr_code && Storage::exists($reservation->qr_code))
+                                        {!! Storage::get($reservation->qr_code) !!}
+                                    @else
+                                    <p>QRコードは発行されていません</p>
                                     @endif
                                 </td>
                             </tr>
@@ -108,7 +120,7 @@
                                         @foreach($reservationsWithStatus as $reservation)
                                         <option value="{{ $reservation->id }}" {{ $reservation->status === 'Checked In' ? '' : 'disabled' }}>
                                             {{ $reservation->reservation_date }} - {{ $reservation->shop->shop_name }}
-                                            @if ($reservation->status === 'Checked In')
+                                            @if ($reservation->status === '来店済み')
                                             (来店済み)
                                             @else
                                             (来店予定)

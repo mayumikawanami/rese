@@ -72,19 +72,6 @@ class ReservationController extends Controller
     // 予約の詳細表示
     public function show($id)
     {
-        // セッションから予約情報を取得
-        //$reservationDetails = session('reservation_details');
-        //$shop = Shop::find($id);
-        // 予約情報があれば該当の予約を取得
-        //$reservation = null;
-        //$shop = null;
-        //if ($reservationDetails && isset($reservationDetails['reservation_id'])) {
-        //$reservation = Reservation::find($reservationDetails['reservation_id']);
-        // 必要なショップデータを取得
-        //$shop = Shop::find($reservationDetails['shop_id']);
-        //}
-
-        //return view('detail', compact('reservation','reservationDetails','shop'));
         $reservation = Reservation::findOrFail($id);
         $shop = Shop::findOrFail($reservation->shop_id);
 
@@ -197,9 +184,10 @@ class ReservationController extends Controller
         $reservation->reservation_date = $reservationDetails['reservation_date'];
         $reservation->reservation_time = $reservationDetails['reservation_time'];
         $reservation->number = $reservationDetails['number'];
+        $reservation->status = '予約確定待ち';
         $reservation->save();
 
-        // QRコード生成
+        /* QRコード生成
         $qrCodeData = URL::to('/reservations/' . $reservation->id);
         $qrCode = QrCode::format('svg')->generate($qrCodeData);
         $qrCodePath = 'qr-codes/' . $reservation->id . '.svg';
@@ -207,7 +195,7 @@ class ReservationController extends Controller
 
         // QRコードのパスを保存
         $reservation->qr_code = $qrCodePath;
-        $reservation->save();
+        $reservation->save(); */
 
         // セッションから予約情報を削除
         session()->forget('reservation_details');
