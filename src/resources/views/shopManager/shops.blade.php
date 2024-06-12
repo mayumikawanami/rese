@@ -7,6 +7,11 @@
 @section('content')
 <div class="shops-container">
     <div class="store-information__creation">
+        @if (session('status'))
+        <div class="shops__alert-success">
+            {{ session('status') }}
+        </div>
+        @endif
         <h2 class="shops-container__title">店舗情報作成</h2>
         <form action="{{ route('shopManager.storeShop') }}" method="POST">
             @csrf
@@ -60,7 +65,7 @@
         <ul class="shop-container__edit-shops">
             @foreach($shops as $shop)
             <li class="edit-shop__list">
-                <a href="{{ route('shopManager.editShop', ['id' => $shop->id]) }}" class="btn btn-primary">{{ $shop->shop_name }}</a>
+                <a href="{{ route('shopManager.edit_shop', ['id' => $shop->id]) }}" class="btn btn-primary">{{ $shop->shop_name }}</a>
             </li>
             @endforeach
         </ul>

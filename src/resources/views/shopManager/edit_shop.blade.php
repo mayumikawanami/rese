@@ -1,11 +1,16 @@
 @extends('layouts.app')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/shopManager/editShop.css')}}">
+<link rel="stylesheet" href="{{ asset('css/shopManager/edit_shop.css')}}">
 @endsection
 
 @section('content')
 <div class="edit-shop__container">
+    @if (session('status'))
+    <div class="edit-shop__alert-success">
+        {{ session('status') }}
+    </div>
+    @endif
     <h2 class="edit-shop__container-title">店舗情報の更新</h2>
     <form action="{{ route('shopManager.updateShop', $shop->id) }}" method="POST">
         @csrf
@@ -49,11 +54,5 @@
             <a class="back-button" href="/shop-manager/shops">戻る</a>
         </div>
     </form>
-
-    @if (session('status'))
-    <div class="edit-shop__alert-success">
-        {{ session('status') }}
-    </div>
-    @endif
 </div>
 @endsection

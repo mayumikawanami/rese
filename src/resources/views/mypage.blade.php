@@ -44,14 +44,6 @@
                                 <td class="td-item">{{ $reservation['status'] }}</td>
                             </tr>
                             <tr>
-                                <!-- <th class="shop-detail__reservation-status-item"></th>
-                                <td class="td-item">
-                                    @if (Storage::exists($reservation->qr_code))
-                                    {!! Storage::get($reservation->qr_code) !!}
-                                    @else
-                                    <p>QRコードが見つかりません。</p>
-                                    @endif
-                                </td> -->
                                 <th class="shop-detail__reservation-status-item">QR Code</th>
                                 <td class="td-item">
                                     @if ($reservation->qr_code && Storage::exists($reservation->qr_code))
@@ -118,7 +110,7 @@
                                     <select id="reservation_id" name="reservation_id" class="form-control">
                                         <option value="" disabled selected>予約を選択してください</option>
                                         @foreach($reservationsWithStatus as $reservation)
-                                        <option value="{{ $reservation->id }}" {{ $reservation->status === 'Checked In' ? '' : 'disabled' }}>
+                                        <option value="{{ $reservation->id }}" {{ $reservation->status === '来店済み' ? '' : 'disabled' }}>
                                             {{ $reservation->reservation_date }} - {{ $reservation->shop->shop_name }}
                                             @if ($reservation->status === '来店済み')
                                             (来店済み)

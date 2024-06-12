@@ -52,7 +52,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/reservation/clear/{id}', [ReservationController::class, 'clearSession'])->name('reservation.clear');
 
     Route::get('/reservations/{id}/edit', [ReservationController::class, 'edit'])->name('reservation.edit');
-    Route::put('/reservations/{id}', [ReservationController::class, 'update'])->name('reservation.update');
+    //Route::put('/reservations/{id}', [ReservationController::class, 'update'])->name('reservation.update');
     Route::patch('/reservation/{id}', [ReservationController::class, 'update'])->name('reservation.update');
     Route::delete('/reservation/{id}', [ReservationController::class, 'delete'])->name('reservation.delete');
 
@@ -77,7 +77,7 @@ Route::middleware(['auth', 'role:shop_manager'])->group(function () {
     Route::get('/shop-manager', [ShopManagerController::class, 'index'])->name('shopManager.dashboard');
     Route::get('/shop-manager/shops', [ShopManagerController::class, 'showShops'])->name('shopManager.shops');
     Route::post('/shop-manager/shops', [ShopManagerController::class, 'storeShop'])->name('shopManager.storeShop');
-    Route::get('/shop-manager/shops/{id}/edit', [ShopManagerController::class, 'editShop'])->name('shopManager.editShop');
+    Route::get('/shop-manager/shops/{id}/edit', [ShopManagerController::class, 'editShop'])->name('shopManager.edit_shop');
     Route::put('/shop-manager/shops/{id}', [ShopManagerController::class, 'updateShop'])->name('shopManager.updateShop');
     Route::get('/shop-manager/reservations', [ShopManagerController::class, 'showReservations'])->name('shopManager.reservations');
     Route::post('/shop-manager/send-notification-mail', [ShopManagerController::class, 'sendNotificationMail'])->name('shopManager.sendNotificationMail');
@@ -86,7 +86,7 @@ Route::middleware(['auth', 'role:shop_manager'])->group(function () {
     Route::post('/shop-manager/scan', [ShopManagerController::class, 'scanQrCode'])->name('shopManager.scan.qrcode');
     Route::post('/shopManager/confirmReservation/{id}', [ShopManagerController::class, 'confirmReservation'])->name('shopManager.confirmReservation');
     Route::post('/shopManager/generateQrCode/{id}', [ShopManagerController::class, 'generateQrCode'])->name('shopManager.generateQrCode');
-    Route::post('/shopManager/confirmReservation/{id}', [ShopManagerController::class, 'confirmReservation'])->name('shopManager.confirmReservation');
+    //Route::post('/shopManager/confirmReservation/{id}', [ShopManagerController::class, 'confirmReservation'])->name('shopManager.confirmReservation');
 
 });
 

@@ -187,16 +187,6 @@ class ReservationController extends Controller
         $reservation->status = '予約確定待ち';
         $reservation->save();
 
-        /* QRコード生成
-        $qrCodeData = URL::to('/reservations/' . $reservation->id);
-        $qrCode = QrCode::format('svg')->generate($qrCodeData);
-        $qrCodePath = 'qr-codes/' . $reservation->id . '.svg';
-        Storage::put($qrCodePath, $qrCode);
-
-        // QRコードのパスを保存
-        $reservation->qr_code = $qrCodePath;
-        $reservation->save(); */
-
         // セッションから予約情報を削除
         session()->forget('reservation_details');
 

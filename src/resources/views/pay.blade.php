@@ -6,10 +6,10 @@
 
 @section('content')
 <div class="pay-form">
-    <h2 class="pay-form__heading">Stripe Checkout</h2>
+    <h2 class="pay-form__heading">Stripe チェックアウト</h2>
     <div class="pay-form__inner">
-        <input type="number" id="amount" placeholder="Enter amount" class="pay-form__input">
-        <button id="checkout-button" class="checkout-button">Checkout</button>
+        <input type="number" id="amount" placeholder="金額を入力してください" class="pay-form__input">
+        <button id="checkout-button" class="checkout-button">チェックアウト</button>
     </div>
 </div>
 

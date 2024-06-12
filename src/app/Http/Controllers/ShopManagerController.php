@@ -61,7 +61,7 @@ class ShopManagerController extends Controller
     public function editShop($id)
     {
         $shop = Shop::findOrFail($id);
-        return view('shopManager.editShop', compact('shop'));
+        return view('shopManager.edit_shop', compact('shop'));
     }
 
     public function updateShop(Request $request, $id)
@@ -84,7 +84,7 @@ class ShopManagerController extends Controller
             'photo_url' => $request->photo_url,
         ]);
 
-        return redirect()->route('shopManager.editShop',['id' => $id])->with('status', '店舗情報を更新しました');
+        return redirect()->route('shopManager.edit_shop',['id' => $id])->with('status', '店舗情報を更新しました');
     }
 
     public function dashboard()
