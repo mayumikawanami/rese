@@ -62,3 +62,9 @@
 .scan-container form button:hover {
     background-color: #218838;
 }
+
+.scan-error {
+    background-color: #dd6a6a;
+    color: #fff;
+    padding: 10px;
+}

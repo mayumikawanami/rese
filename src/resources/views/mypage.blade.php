@@ -47,7 +47,7 @@
                                 <th class="shop-detail__reservation-status-item">QR Code</th>
                                 <td class="td-item">
                                     @if ($reservation->qr_code && Storage::exists($reservation->qr_code))
-                                        {!! Storage::get($reservation->qr_code) !!}
+                                    {!! Storage::get($reservation->qr_code) !!}
                                     @else
                                     <p>QRコードは発行されていません</p>
                                     @endif
@@ -60,44 +60,46 @@
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">予約をキャンセル</button>
                             </form>
-                            <!-- 日時と人数の変更フォーム -->
-                            <form action="{{ route('reservation.update', ['id' => $reservation->id]) }}" method="POST">
-                                @csrf
-                                @method('PATCH')
-                                <!-- 日時の選択 -->
-                                <div class="form-group">
-                                    <label for="reservation_date_{{ $reservation->id }}">Date</label>
-                                    <select id="reservation_date_{{ $reservation->id }}" name="reservation_date" class="form-control">
-                                        <!-- 日付のオプションを動的に生成 -->
-                                        @for ($i = 0; $i < 30; $i++) <option value="{{ \Carbon\Carbon::now()->addDays($i)->format('Y-m-d') }}" {{ \Carbon\Carbon::now()->addDays($i)->format('Y-m-d') == $reservation->reservation_date ? 'selected' : '' }}>
-                                            {{ \Carbon\Carbon::now()->addDays($i)->format('Y-m-d') }}
-                                            </option>
-                                            @endfor
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="reservation_time_{{ $reservation->id }}">Time</label>
-                                    <select id="reservation_time_{{ $reservation->id }}" name="reservation_time" class="form-control">
-                                        <!-- 時間のオプションを動的に生成 -->
-                                        @for ($hour = 11; $hour < 21; $hour++) @for ($minute=0; $minute <=45; $minute +=15) <option value="{{ sprintf('%02d:%02d', $hour, $minute) }}" {{ sprintf('%02d:%02d', $hour, $minute) == $reservation->reservation_time ? 'selected' : '' }}>
-                                            {{ sprintf('%02d:%02d', $hour, $minute) }}
-                                            </option>
-                                            @endfor
-                                            @endfor
-                                    </select>
-                                </div>
+                            <div class="update-form">
+                                <!-- 日時と人数の変更フォーム -->
+                                <form action="{{ route('reservation.update', ['id' => $reservation->id]) }}" method="POST">
+                                    @csrf
+                                    @method('PATCH')
+                                    <!-- 日時の選択 -->
+                                    <div class="form-group">
+                                        <label for="reservation_date_{{ $reservation->id }}">Date</label>
+                                        <select id="reservation_date_{{ $reservation->id }}" name="reservation_date" class="form-control">
+                                            <!-- 日付のオプションを動的に生成 -->
+                                            @for ($i = 0; $i < 30; $i++) <option value="{{ \Carbon\Carbon::now()->addDays($i)->format('Y-m-d') }}" {{ \Carbon\Carbon::now()->addDays($i)->format('Y-m-d') == $reservation->reservation_date ? 'selected' : '' }}>
+                                                {{ \Carbon\Carbon::now()->addDays($i)->format('Y-m-d') }}
+                                                </option>
+                                                @endfor
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="reservation_time_{{ $reservation->id }}">Time</label>
+                                        <select id="reservation_time_{{ $reservation->id }}" name="reservation_time" class="form-control">
+                                            <!-- 時間のオプションを動的に生成 -->
+                                            @for ($hour = 11; $hour < 21; $hour++) @for ($minute=0; $minute <=45; $minute +=15) <option value="{{ sprintf('%02d:%02d', $hour, $minute) }}" {{ sprintf('%02d:%02d', $hour, $minute) == $reservation->reservation_time ? 'selected' : '' }}>
+                                                {{ sprintf('%02d:%02d', $hour, $minute) }}
+                                                </option>
+                                                @endfor
+                                                @endfor
+                                        </select>
+                                    </div>
 
-                                <!-- 人数の選択 -->
-                                <div class="form-group">
-                                    <label for="number_{{ $reservation->id }}">Number</label>
-                                    <select id="number_{{ $reservation->id }}" name="number" class="form-control">
-                                        @for ($i = 1; $i <= 10; $i++) <option value="{{ $i }}" {{ $i == $reservation->number ? 'selected' : '' }}>{{ $i }}人</option>
-                                            @endfor
-                                    </select>
-                                </div>
+                                    <!-- 人数の選択 -->
+                                    <div class="form-group">
+                                        <label for="number_{{ $reservation->id }}">Number</label>
+                                        <select id="number_{{ $reservation->id }}" name="number" class="form-control">
+                                            @for ($i = 1; $i <= 10; $i++) <option value="{{ $i }}" {{ $i == $reservation->number ? 'selected' : '' }}>{{ $i }}人</option>
+                                                @endfor
+                                        </select>
+                                    </div>
 
-                                <button type="submit" class="btn btn-primary">予約を変更</button>
-                            </form>
+                                    <button type="submit" class="btn btn-primary">予約を変更</button>
+                                </form>
+                            </div>
                         </div>
 
                         <div class="mypage__rating-form">

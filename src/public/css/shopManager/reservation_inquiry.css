@@ -58,3 +58,17 @@
 .reservation-inquiry__back-button:hover {
     background-color: #106393;
 }
+
+@media screen and (max-width: 768px) {
+    .reservation-inquiry__table th,
+    .reservation-inquiry__table td {
+        font-size: 11px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .reservation-inquiry__table th,
+    .reservation-inquiry__table td {
+        font-size: 7px;
+    }
+}

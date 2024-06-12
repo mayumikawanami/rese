@@ -6,6 +6,11 @@
 
 @section('content')
 <div class="scan-container">
+    @if(isset($error))
+    <div class="alert alert-danger scan-error" role="alert">
+        {{ $error }}
+    </div>
+    @endif
     <h1 class="scan-container__title">QRコードスキャン</h1>
 
     <!-- カメラプレビュー領域 -->

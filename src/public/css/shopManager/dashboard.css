@@ -105,3 +105,22 @@
 .email-send__button:hover {
     background-color: #218838;
 }
+
+@media screen and (max-width: 768px) {
+    .shop-manager__container-link {
+        flex-wrap: wrap;
+    }
+
+    .shop-manager__container-link a {
+        font-size: 15px;
+        width: 100%;
+    }
+
+    .shop-manager__container {
+        margin-bottom: 30px;
+    }
+
+    .dashboard-container {
+        width: 100%;
+    }
+}

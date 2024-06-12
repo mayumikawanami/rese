@@ -106,40 +106,7 @@ input::placeholder {
 }
 
 
-/* ページネーション
-.pagination {
-    display: flex;
-    justify-content: center;
-    list-style: none;
-    margin: 30px 0;
-}
 
-.pagination li:not(.active) {
-    border: 1px solid #bbbbba;
-    padding: 4px 12px;
-    background-color: white;
-}
-
-.pagination li:not(:last-child) {
-    border-right: none;
-}
-
-.pagination a {
-    color: #033bc9;
-    text-decoration: none;
-}
-
-.pagination__link {
-    text-decoration: none;
-}
-
-.active {
-    padding: 4px 12px;
-    border: 1px solid #033bc9;
-    background-color: #033bc9;
-    color: #FFF;
-}
-*/
 
 @media screen and (max-width: 768px) {
     .app {
@@ -156,9 +123,31 @@ input::placeholder {
     .app {
         padding: 10px 20px;
     }
+
     .header {
         margin-bottom: 25px;
         margin-left: 10px;
         height: 60px;
+    }
+
+    .modal__list {
+        margin: 50px auto;
+    }
+
+    .modal__inner {
+        width: 70%;
+        height: 80%;
+    }
+
+    .modal {
+        height: 50%;
+    }
+
+    .modal__list-item {
+        font-size: 13px;
+    }
+
+    .logout-button {
+        font-size: 13px;
     }
 }

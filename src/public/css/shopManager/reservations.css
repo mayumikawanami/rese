@@ -104,3 +104,34 @@
     width: 50%;
     text-align: center;
 }
+
+@media screen and (max-width: 768px) {
+    .reservations-container__table{
+        font-size: 8px;
+    }
+
+    .confirm-status {
+        font-size: 7px;
+    }
+
+    .reissue-button {
+        font-size: 5px;
+    }
+
+    .confirm-button,
+    .issue-button {
+        font-size: 12px;
+        padding: 2px 3px;
+    }
+
+}
+
+@media screen and (max-width: 480px) {
+    .confirm-button,
+    .issue-button {
+        padding: 8px 5px;
+        font-size: 8px;
+        writing-mode: tb;
+    }
+
+}

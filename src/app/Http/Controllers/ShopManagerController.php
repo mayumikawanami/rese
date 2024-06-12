@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Models\Shop;
 use App\Models\Reservation;
 use App\Mail\NotificationMail;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -120,17 +118,14 @@ class ShopManagerController extends Controller
     // QRコードをスキャンして予約を確認
     public function scanQrCode(Request $request)
     {
-        Log::info('QRコードデータ: ' . $request->input('qr_code_data'));
         $qrCodeData = $request->input('qr_code_data');
 
         // QRコードのデータから予約IDを取得
         $reservationId = basename($qrCodeData);
-        Log::info('予約ID: ' . $reservationId);
 
         // データベースで予約を検索
         $reservation = Reservation::find($reservationId);
         if ($reservation) {
-            Log::info('予約が見つかりました: ' . $reservation->id);
 
             // ステータスを来店済みに更新
             $reservation->status = '来店済み';
@@ -139,8 +134,6 @@ class ShopManagerController extends Controller
             // 予約が見つかった場合は、reservations.blade.php を表示する
             return view('shopManager.reservation_inquiry', ['reservation' => $reservation]);
         } else {
-            Log::warning('予約が見つかりません: ' . $reservationId);
-            // 予約が見つからなかった場合は、エラーメッセージを表示する
             return view('shopManager.scan', ['error' => '予約が見つかりません。']);
         }
     }

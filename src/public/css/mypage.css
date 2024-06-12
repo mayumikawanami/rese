@@ -22,12 +22,12 @@
 
 /*予約状況*/
 .mypage__reservation-status table {
-    width: 70%;
     border-collapse: collapse;
 }
 
 .reservation-item {
     padding: 10px;
+    font-size: 13px;
 
 }
 
@@ -62,10 +62,6 @@
     flex-wrap: wrap;
     gap: 20px;
 }
-
-/*.mypage__favorite-shop__wrapper:nth-child(n+4) {
-    clear: left;
-}*/
 
 .mypage__favorite-shop__item {
     flex: 0 0 calc(50% - 20px);
@@ -177,10 +173,14 @@
 }
 
 .reservation__change-form{
-    display: flex;
-    justify-content: space-around;
-    align-items: flex-start;
     line-height: 2;
+}
+
+.update-form {
+    margin-bottom: 10px;
+    background-color: darkgray;
+    padding: 10px;
+    border-radius: 5px;
 }
 
 .close {
@@ -195,6 +195,22 @@
     cursor: pointer;
     line-height: 1;
 
+}
+
+.btn-danger {
+    width: 100%;
+    margin-bottom: 20px;
+    background-color: #040d64;
+    font-weight: bold;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+}
+
+.btn-primary {
+    width: 100%;
+    font-weight: bold;
 }
 
 .close:hover,
@@ -291,11 +307,105 @@
     /* ホバー時の背景色 */
 }
 
-
-
-/* 2つの要素が横並びになるようにする
 @media screen and (max-width: 768px) {
-    .mypage__favorite-shop__item {
-        flex-basis: calc(50% - 10px);
+    .mypage__reservation-status th,
+    .mypage__reservation-status td {
+        padding: 5px 0;
+        font-size: 11px;
     }
-}*/
+
+    .mypage__reservation-status td {
+        text-align: right;
+    }
+
+    .modal-content {
+        padding: 20px 5px 20px 15px;
+        width: 100%;
+    }
+
+    .mypage__container {
+        padding: 0 10px;
+    }
+
+    .reservation-item {
+        padding: 5px 1px;
+        font-size: 9px;
+    }
+
+    .mypage__favorite-shop__name {
+        font-size: 15px;
+    }
+
+    .mypage__favorite-shop__content {
+        padding: 5px;
+    }
+
+    .mypage__favorite-shop__detail-link{
+        font-size: 9px;
+        padding: 3px 3px;
+    }
+
+    .shop-container__favorite-button--red {
+        font-size: 1em;
+    }
+
+    .mypage__favorite-shop__tag{
+        font-size: 8px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .mypage__reservation-status th,
+    .mypage__reservation-status td {
+        padding: 2px 0;
+        font-size: 8px;
+    }
+
+    .mypage__rating-form .mypage-content_title {
+        font-size: 12px;
+        margin-bottom: 10px;
+    }
+
+    .mypage__rating-form input[type="number"],
+    .mypage__rating-form textarea,
+    .mypage__rating-form select {
+        padding: 5px;
+        font-size: 7px;
+    }
+
+    .mypage__rating-form button {
+        font-size: 8px;
+    }
+
+    .mypage__container {
+        padding: 0 1px;
+    }
+
+    .btn-primary{
+        font-size: 7px;
+    }
+
+    .mypage__favorite-shop__name {
+        font-size: 10px;
+    }
+
+    .mypage__favorite-shop__tag{
+        font-size: 5px;
+    }
+
+    .mypage__favorite-shop__detail-link{
+        font-size: 5px;
+    }
+
+    .mypage__favorite-shop__wrapper {
+        gap: 2px;
+    }
+
+    .mypage__heading {
+        font-size: 18px;
+    }
+
+    .mypage-content__title {
+        font-size: 13px;
+    }
+}

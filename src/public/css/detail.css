@@ -32,6 +32,7 @@
     box-shadow: 3px 3px 2px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
     margin-top: -90px;
+    padding-bottom: 60px;
 }
 
 .shop-detail__selected-shop-details img {
@@ -182,7 +183,7 @@
 .shop-detail__finalize-button{
     padding: 10px 30px;
     width: 100%;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     font-size: 14px;
     font-weight: bold;
 }
@@ -213,12 +214,30 @@
     }
 
     .shop-detail__reservation-form {
-        margin-top: -70px;
+        margin-top: -50px;
     }
 
     .shop-detail__form-group input,select {
-    font-size: 12px;
+        font-size: 12px;
     }
+
+    .shop-detail__reservation-status {
+        width: 100%;
+        font-size: 13px;
+    }
+
+    .shop-detail__reservation-status-item {
+        padding: 5px 0 10px 10px;
+    }
+
+    .shop-detail__info{
+        font-size: 15px;
+    }
+
+    .shop-detail__alert-success {
+        font-size: 10px;
+    }
+
 }
 
 @media screen and (max-width: 480px) {
@@ -254,10 +273,44 @@
     }
     .shop-detail__reservation-form {
         padding: 5px;
+        padding-bottom: 50px;
         margin-top: -50px;
     }
 
     .shop-detail__form-group input,select {
     font-size: 10px;
-}
+    }
+
+    .shop-detail__reservation-form-title {
+        margin: 5px 5px;
+        font-size: 13px;
+    }
+
+    .shop-detail__alert-success {
+        font-size: 8px;
+    }
+
+    .shop-detail__reservation-status {
+        font-size: 10px;
+    }
+
+    .shop-detail__reservation-status-item {
+        padding: 5px 0 5px 10px;
+    }
+
+    .shop-detail__finalize-button {
+        padding: 5px 30px;
+        margin-bottom: 20px;
+        font-size: 10px;
+    }
+
+    .btn-secondary {
+        padding: 5px 30px;
+        font-size: 10px;
+    }
+
+    .shop-detail__reservation-button{
+        font-size: 10px;
+    }
+
 }
