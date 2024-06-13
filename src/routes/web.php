@@ -52,7 +52,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/reservation/clear/{id}', [ReservationController::class, 'clearSession'])->name('reservation.clear');
 
     Route::get('/reservations/{id}/edit', [ReservationController::class, 'edit'])->name('reservation.edit');
-    //Route::put('/reservations/{id}', [ReservationController::class, 'update'])->name('reservation.update');
     Route::patch('/reservation/{id}', [ReservationController::class, 'update'])->name('reservation.update');
     Route::delete('/reservation/{id}', [ReservationController::class, 'delete'])->name('reservation.delete');
 
@@ -86,8 +85,6 @@ Route::middleware(['auth', 'role:shop_manager'])->group(function () {
     Route::post('/shop-manager/scan', [ShopManagerController::class, 'scanQrCode'])->name('shopManager.scan.qrcode');
     Route::post('/shopManager/confirmReservation/{id}', [ShopManagerController::class, 'confirmReservation'])->name('shopManager.confirmReservation');
     Route::post('/shopManager/generateQrCode/{id}', [ShopManagerController::class, 'generateQrCode'])->name('shopManager.generateQrCode');
-    //Route::post('/shopManager/confirmReservation/{id}', [ShopManagerController::class, 'confirmReservation'])->name('shopManager.confirmReservation');
-
 });
 
 

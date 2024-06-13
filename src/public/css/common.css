@@ -3,15 +3,6 @@
     min-height: 100vh;
 }
 
-
-textarea::placeholder,
-input::placeholder {
-    color: #5c5b5b;
-    padding-left: 15px;
-    font-weight: bold;
-}
-
-
 .header {
     display: flex;
     align-items: center;
@@ -104,9 +95,6 @@ input::placeholder {
 #modal-toggle:checked~.modal {
     display: flex;
 }
-
-
-
 
 @media screen and (max-width: 768px) {
     .app {

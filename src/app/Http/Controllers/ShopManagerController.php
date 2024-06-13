@@ -131,7 +131,6 @@ class ShopManagerController extends Controller
             $reservation->status = '来店済み';
             $reservation->save();
 
-            // 予約が見つかった場合は、reservations.blade.php を表示する
             return view('shopManager.reservation_inquiry', ['reservation' => $reservation]);
         } else {
             return view('shopManager.scan', ['error' => '予約が見つかりません。']);

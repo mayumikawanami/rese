@@ -5,21 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Reservation;
 use App\Models\Shop;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\URL;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use App\Http\Requests\ReservationRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Storage;
 
 class ReservationController extends Controller
 {
-    // 予約の作成
-    public function create(ReservationRequest $request)
-    {
-        // 予約の作成ロジックを記述する
-    }
-
     // 予約の更新
     public function update(Request $request, $id)
     {

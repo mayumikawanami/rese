@@ -7,6 +7,15 @@
 @section('content')
 <div class="mypage__container">
     @if(auth()->check())
+    @error('reservation_id')
+    <p class="rating__error-message">評価を送信するには {{ $message }}</p>
+    @enderror
+    @error('rating')
+    <p class="rating__error-message">評価を送信するには {{ $message }}</p>
+    @enderror
+    @error('comment')
+    <p class="rating__error-message">評価を送信するには {{ $message }}</p>
+    @enderror
     <h2 class="mypage__heading">{{ auth()->user()->name }}さん</h2>
     <div class="mypage__content">
         <div class="mypage__reservation-status">
@@ -103,7 +112,7 @@
                         </div>
 
                         <div class="mypage__rating-form">
-                            <p class="mypage-content_title">評価とコメントを追加</p>
+                            <p class="mypage-content_title">評価フォーム</p>
                             <form action="{{ route('ratings.store') }}" method="POST">
                                 @csrf
                                 <!-- ユーザーが評価する店舗の選択 -->

@@ -177,7 +177,6 @@
 @media screen and (max-width: 768px) {
     .shop-container__shop-item {
         flex: 1 1 calc(33.33% - 20px);
-        /* 幅が狭くなった場合に3つ並べる */
     }
 
     .shop-container__shop-content {
@@ -229,7 +228,6 @@
 @media screen and (max-width: 480px) {
     .shop-container__shop-item {
         flex: 1 1 calc(50% - 20px);
-        /* 幅がさらに狭くなった場合に2つ並べる */
     }
 
     .shop-container__shop-name {

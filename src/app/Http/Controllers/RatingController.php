@@ -2,11 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Http\Requests\RatingRequest;
 use App\Models\Rating;
 use App\Models\Reservation;
-use App\Models\Shop;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 

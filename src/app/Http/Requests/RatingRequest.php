@@ -34,9 +34,13 @@ class RatingRequest extends FormRequest
     {
         return [
             'reservation_id.required' => '予約を選択してください',
+            'reservation_id.exists' => '選択した予約は存在しません',
             'rating.required' => '評価を選択してください',
+            'rating.integer' => '評価は整数である必要があります',
+            'rating.min' => '評価は1以上である必要があります',
+            'rating.max' => '評価は5以下である必要があります',
             'comment.string' => 'コメントを文字列で入力してください',
-            'comment.max:255' => 'コメントは255文字以下で入力してください',
+            'comment.max' => 'コメントは255文字以下で入力してください',
         ];
     }
 }
