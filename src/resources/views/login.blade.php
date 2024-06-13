@@ -8,7 +8,7 @@
 <div class="login-form">
     <h2 class="login-form__heading">Login</h2>
     <div class="login-form__inner">
-        <form class="login-form__form" action="{{ route('login.post') }}" method="post">
+        <form class="login-form__form" action="{{ route('login.post') }}" method="post" novalidate>
             @csrf
             <div class="login-form__group">
                 <div class="auth-icon">

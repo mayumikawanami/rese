@@ -8,7 +8,7 @@
 <div class="register-form">
     <h2 class="register-form__heading">Registration</h2>
     <div class="register-form__inner">
-        <form class="register-form__form" action="{{ route('register.post') }}" method="post">
+        <form class="register-form__form" action="{{ route('register.post') }}" method="post" novalidate>
             @csrf
             <div class="register-form__group">
                 <div class="auth-icon">
