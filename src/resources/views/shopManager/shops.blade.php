@@ -6,12 +6,12 @@
 
 @section('content')
 <div class="shops-container">
+    @if (session('status'))
+    <div class="shops__alert-success">
+        {{ session('status') }}
+    </div>
+    @endif
     <div class="store-information__creation">
-        @if (session('status'))
-        <div class="shops__alert-success">
-            {{ session('status') }}
-        </div>
-        @endif
         <h2 class="shops-container__title">店舗情報作成</h2>
         <form action="{{ route('shopManager.storeShop') }}" method="POST">
             @csrf
@@ -54,11 +54,6 @@
                 <a class="back-button" href="{{ route('shopManager.dashboard') }}">戻る</a>
             </div>
         </form>
-        @if (session('status'))
-        <div class="shops__alert-success">
-            {{ session('status') }}
-        </div>
-        @endif
     </div>
     <div class="store-information__update">
         <h2 class="shops-container__title">店舗情報の更新</h2>
