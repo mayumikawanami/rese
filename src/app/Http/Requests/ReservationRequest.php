@@ -24,7 +24,7 @@ class ReservationRequest extends FormRequest
     public function rules()
     {
         return [
-            'date' => 'required|date',
+            'date' => 'required|date|after_or_equal:tomorrow',
             'time' => 'required',
             'number' => 'required|integer|min:1',
         ];
@@ -34,8 +34,16 @@ class ReservationRequest extends FormRequest
     {
         return [
             'date.required' => '日付を選択してください',
+            'date.after_or_equal' => '翌日以降の日付を選択してください',
             'time.required' => '時間を選択してください',
             'number.required' => '人数を選択してください',
         ];
+    }
+
+    public function withValidator($validator)
+    {
+        $validator->after(function ($validator) {
+            // ここで追加のバリデーションを行う場合に使用します。
+        });
     }
 }

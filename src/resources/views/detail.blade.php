@@ -26,8 +26,8 @@
             </div>
             <img class="shop-detail__img" src="{{ $shop->photo_url }}" alt="{{ $shop->shop_name }}">
             <div class="shop-detail__tag">
-                <p class="shop-detail__area">#{{ $shop->area }}</p>
-                <p class="shop-detail__genre">#{{ $shop->genre }}</p>
+                <p class="shop-container__shop-area">#{{ $shop->area->name }}</p> <!-- エリア名を表示 -->
+                <p class="shop-container__shop-genre">#{{ $shop->genre->name }}</p> <!-- ジャンル名を表示 -->
             </div>
             <p class="shop-detail__info">{{ $shop->info }}</p>
         </div>

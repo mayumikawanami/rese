@@ -12,10 +12,19 @@ class Shop extends Model
 
     protected $fillable = [
         'shop_name',
-        'area',
-        'genre',
         'info',
         'photo_url',
+        'area_id',  // エリアの外部キー
+        'genre_id', // ジャンルの外部キー
     ];
 
+    public function area()
+    {
+        return $this->belongsTo(Area::class);
+    }
+
+    public function genre()
+    {
+        return $this->belongsTo(Genre::class);
+    }
 }

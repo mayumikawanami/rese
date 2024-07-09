@@ -57,8 +57,8 @@
                 <div class="shop-container__shop-content">
                     <h2 class="shop-container__shop-name">{{ $shop->shop_name }}</h2>
                     <div class="shop-container__shop-tag">
-                        <p class="shop-container__shop-area">#{{ $shop->area }}</p>
-                        <p class="shop-container__shop-genre">#{{ $shop->genre }}</p>
+                        <p class="shop-container__shop-area">#{{ $shop->area->name }}</p> <!-- エリア名を表示 -->
+                        <p class="shop-container__shop-genre">#{{ $shop->genre->name }}</p> <!-- ジャンル名を表示 -->
                     </div>
                     <div class="shop-container__shop-details-with-favorite">
                         <a href="{{ route('shops.detail', ['id' => $shop->id]) }}" class="shop-container__detail-link">詳しくみる</a>

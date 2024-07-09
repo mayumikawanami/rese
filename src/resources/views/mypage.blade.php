@@ -181,8 +181,8 @@
                         <div class="mypage__favorite-shop__content">
                             <h2 class="mypage__favorite-shop__name">{{ $shop->shop_name }}</h2>
                             <div class="mypage__favorite-shop__tag">
-                                <p class="mypage__favorite-shop__area">#{{ $shop->area }}</p>
-                                <p class="mypage__favorite-shop__genre">#{{ $shop->genre }}</p>
+                                <p class="mypage__favorite-shop__area">#{{ $shop->area->name }}</p>
+                                <p class="mypage__favorite-shop__genre">#{{ $shop->genre->name }}</p>
                             </div>
                             <div class="mypage__favorite-shop__details-with-favorite">
                                 <a href="{{ route('shops.detail', ['id' => $shop->id]) }}" class="mypage__favorite-shop__detail-link">詳しくみる</a>

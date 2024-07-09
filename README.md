@@ -115,7 +115,7 @@
 1. `docker-compose exec php bash` を実行して、phpコンテナに入ります。
 2. `composer install` を実行して、依存関係をインストールします。
 3. `.env.example` ファイルを `.env` にコピーします。
-4. `.env` ファイル内の以下の環境変数を設定します。
+4. `.env` ファイルを編集して、データベース接続情報とメール設定を追加します。
 ```plaintext
 DB_CONNECTION=mysql
 DB_HOST=mysql
@@ -123,6 +123,15 @@ DB_PORT=3306
 DB_DATABASE=laravel_db
 DB_USERNAME=laravel_user
 DB_PASSWORD=laravel_pass
+
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.gmail.com
+MAIL_PORT=587
+MAIL_USERNAME=mayumi.19821215@gmail.com
+MAIL_PASSWORD=cbpvhtmanpwdtccx
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS="mayumi.19821215@gmail.com"
+MAIL_FROM_NAME="${APP_NAME}"
 ```
 5. アプリケーションキーを生成します。
 ``` bash
@@ -138,6 +147,35 @@ php artisan migrate
 ``` bash
 php artisan db:seed
 ```
+
+## リマインダーの設定
+
+### Cronジョブの設定
+リマインダーを毎日朝7時に送信するには、サーバーのcronジョブを設定する必要があります。以下のコマンドを使用して、cronジョブを設定します。
+
+``` bash
+crontab -e
+```
+- 次の行を追加して保存します。
+
+``` bash
+0 7 * * * /usr/bin/env TZ=Asia/Tokyo /usr/local/bin/php /var/www/artisan reminder:send >> /var/log/cron_error.log 2>&1
+```
+- リマインダーを手動で実行する場合は以下のコマンドを使用します。
+``` bash
+php artisan reminder:send
+```
+
+- onジョブのエラーログは以下のコマンドで確認できます。
+``` bash
+tail -f /var/log/cron_error.log
+```
+
+- システムのcronログを確認するには以下のコマンドを使用します。
+``` bash
+grep cron /var/log/syslog | tail -n 50
+```
+
 ## アカウントの種類
 
 - **Admin User**

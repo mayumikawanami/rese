@@ -75,6 +75,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 Route::middleware(['auth', 'role:shop_manager'])->group(function () {
     Route::get('/shop-manager', [ShopManagerController::class, 'index'])->name('shopManager.dashboard');
     Route::get('/shop-manager/shops', [ShopManagerController::class, 'showShops'])->name('shopManager.shops');
+    Route::get('/shopManager/create', [ShopManagerController::class, 'createShop'])->name('shopManager.createShop');
     Route::post('/shop-manager/shops', [ShopManagerController::class, 'storeShop'])->name('shopManager.storeShop');
     Route::get('/shop-manager/shops/{id}/edit', [ShopManagerController::class, 'editShop'])->name('shopManager.edit_shop');
     Route::put('/shop-manager/shops/{id}', [ShopManagerController::class, 'updateShop'])->name('shopManager.updateShop');

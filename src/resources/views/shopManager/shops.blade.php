@@ -21,17 +21,18 @@
             </div>
             <div class="form-group">
                 <label for="area">area</label>
-                <input type="text" name="area" class="form-control" placeholder="エリアを入力してください" required>
+                <select name="area" class="form-control" placeholder="エリアを入力してください" required>
+                    @foreach($areas as $id => $name)
+                        <option value="{{ $name }}">{{ $name }}</option>
+                    @endforeach
+                </select>
             </div>
             <div class="form-group">
                 <label for="genre">genre</label>
                 <select name="genre" class="form-control" required>
-                    <option value="">ジャンルを選択してください</option>
-                    <option value="居酒屋">居酒屋</option>
-                    <option value="寿司">寿司</option>
-                    <option value="焼肉">焼肉</option>
-                    <option value="焼肉">イタリアン</option>
-                    <option value="焼肉">ラーメン</option>
+                    @foreach($genres as $id => $name)
+                        <option value="{{ $name }}">{{ $name }}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="form-group">

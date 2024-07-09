@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Shop;
+use App\Models\Area;
+use App\Models\Genre;
 use App\Models\Reservation;
 use App\Mail\NotificationMail;
 use Illuminate\Support\Facades\Mail;
@@ -23,23 +25,35 @@ class ShopManagerController extends Controller
     public function showShops()
     {
         $shops = Shop::all();
-        return view('shopManager.shops', compact('shops'));
+        $areas = Area::pluck('name', 'id');
+        $genres = Genre::pluck('name', 'id');
+        return view('shopManager.shops', compact('shops', 'areas', 'genres'));
+    }
+
+    public function createShop()
+    {
+        $areas = Area::pluck('name', 'id');
+        $genres = Genre::pluck('name', 'id');
+        return view('shopManager.create_shop', compact('areas', 'genres'));
     }
 
     public function storeShop(Request $request)
     {
         $request->validate([
             'shop_name' => 'required|string|max:255',
-            'area' => 'required|string|max:255',
-            'genre' => 'required|string|max:255',
             'info' => 'required|string',
             'photo_url' => 'required|url',
+            'area' => 'required|exists:areas,name',
+            'genre' => 'required|exists:genres,name',
         ]);
+
+        $area = Area::where('name', $request->area)->firstOrFail();
+        $genre = Genre::where('name', $request->genre)->firstOrFail();
 
         $shop = new Shop([
             'shop_name' => $request->shop_name,
-            'area' => $request->area,
-            'genre' => $request->genre,
+            'area_id' => $area->id,
+            'genre_id' => $genre->id,
             'info' => $request->info,
             'photo_url' => $request->photo_url,
         ]);
@@ -59,7 +73,10 @@ class ShopManagerController extends Controller
     public function editShop($id)
     {
         $shop = Shop::findOrFail($id);
-        return view('shopManager.edit_shop', compact('shop'));
+        $areas = Area::pluck('name', 'id');
+        $genres = Genre::pluck('name', 'id');
+
+        return view('shopManager.edit_shop', compact('shop', 'areas', 'genres'));
     }
 
     public function updateShop(Request $request, $id)
@@ -68,16 +85,19 @@ class ShopManagerController extends Controller
 
         $request->validate([
             'shop_name' => 'required|string|max:255',
-            'area' => 'required|string|max:255',
-            'genre' => 'required|string|max:255',
             'info' => 'required|string',
             'photo_url' => 'required|string',
+            'area' => 'required|exists:areas,name',
+            'genre' => 'required|exists:genres,name',
         ]);
+
+        $area = Area::where('name', $request->area)->firstOrFail();
+        $genre = Genre::where('name', $request->genre)->firstOrFail();
 
         $shop->update([
             'shop_name' => $request->shop_name,
-            'area' => $request->area,
-            'genre' => $request->genre,
+            'area_id' => $area->id,
+            'genre_id' => $genre->id,
             'info' => $request->info,
             'photo_url' => $request->photo_url,
         ]);
