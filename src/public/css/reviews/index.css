@@ -1,0 +1,82 @@
+.all-reviews-page {
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+.all-reviews-page h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.review {
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.review .detail__star-rating {
+    margin-bottom: 10px;
+}
+
+.review .detail__star-rating i {
+    color: rgb(66, 101, 240);
+}
+
+.review .detail__review-content {
+    margin-bottom: 10px;
+}
+
+.review .review-img {
+    max-width: 100px;
+    display: block;
+    margin: 10px 0;
+}
+
+.review .edit-button,
+.review .delete-button {
+    display: inline-block;
+    padding: 5px 10px;
+    margin-right: 5px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 3px;
+}
+
+.review .delete-button {
+    background-color: #dc3545;
+}
+
+.review .edit-button:hover,
+.review .delete-button:hover {
+    opacity: 0.8;
+}
+
+.review-message {
+    text-align: center;
+    color: #999;
+}
+
+.back-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.back-button:hover {
+    opacity: 0.8;
+}
+
+.has-reviews img {
+    height: 200px;
+    /* Adjust the height as needed */
+    object-fit: cover;
+}

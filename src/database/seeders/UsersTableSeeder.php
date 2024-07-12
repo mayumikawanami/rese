@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 
+
 class UsersTableSeeder extends Seeder
 {
     /**
@@ -29,5 +30,13 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('password'),
         ]);
         $shopManager->assignRole('shop_manager');
+
+        // 一般ユーザーの作成
+        $user = User::create([
+            'name' => 'User',
+            'email' => 'user@example.com',
+            'password' => bcrypt('password'),
+        ]);
+        $user->assignRole('user');
     }
 }

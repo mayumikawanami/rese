@@ -6,9 +6,19 @@
 
 @section('content')
 <div class="shop-detail__container">
+    @if(session('success'))
+    <div class="alert-success__review">
+        {{ session('success') }}
+    </div>
+    @endif
+    @if(session('error'))
+    <div class="alert-success__review">
+        {{ session('error') }}
+    </div>
+    @endif
     <div class="shop-detail__content">
         @if($shop)
-        <div class="shop-detail__selected-shop-details">
+        <div class="shop-detail__selected-shop-details @if ($shop->reviews->count() > 0) has-reviews @endif">
             <div class="shop-detail__nav-buttons">
                 @if ($previousShop)
                 <a href="{{ route('shops.detail', ['id' => $previousShop->id]) }}" class="shop-detail__nav-button">&lt;</a>
@@ -30,6 +40,51 @@
                 <p class="shop-container__shop-genre">#{{ $shop->genre->name }}</p> <!-- ジャンル名を表示 -->
             </div>
             <p class="shop-detail__info">{{ $shop->info }}</p>
+
+            <div class="all-reviews-button">
+                @if ($shop->reviews->count() > 0)
+                <!-- ボタンをクリックして別ページにリダイレクト -->
+                <a href="{{ route('reviews.index', ['shop' => $shop]) }}" class="view-all-reviews-button">全ての口コミ情報を表示</a>
+                @endif
+            </div>
+
+            <!-- 口コミ作成ページへのリンクを追加 -->
+            @if (auth()->check() && $shop->reviews->where('user_id', auth()->id())->isEmpty() && auth()->user()->hasRole('user'))
+            <div class="review__create-button">
+                <a href="{{ route('reviews.create', ['id' => $shop->id]) }}" class="review-button">口コミを投稿する</a>
+            </div>
+            @endif
+            @if ($shop->reviews->count() > 0)
+            @php $latestReview = $shop->reviews->first(); @endphp
+            <div class="review">
+                <div class="review-button">
+                    @if (auth()->check() && auth()->user()->id == $latestReview->user_id)
+                    <!-- 編集ボタン -->
+                    <a href="{{ route('reviews.edit', ['shop_id' => $shop->id, 'review_id' => $latestReview->id]) }}" class="edit-button">口コミを編集</a>
+                    @endif
+                    @if (auth()->check() && (auth()->user()->id == $latestReview->user_id || auth()->user()->hasRole('admin')))
+                    <!-- 削除ボタン -->
+                    <form action="{{ route('reviews.destroy', ['shop_id' => $shop->id, 'review_id' => $latestReview->id]) }}" method="POST" onsubmit="return confirm('本当に削除しますか？');" style="display:inline-block;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="delete-button">口コミを削除</button>
+                    </form>
+                    @endif
+                </div>
+                <div class="detail__star-rating">
+                    @for ($i = 1; $i <= 5; $i++) @if ($i <=$latestReview->rating)
+                        <i class="fas fa-star"></i>
+                        @else
+                        <i class="far fa-star"></i>
+                        @endif
+                        @endfor
+                </div>
+                <div class="detail__review-content">{{ $latestReview->content }}</div>
+                @if ($latestReview->image_path)
+                <img class="review-img" src="{{ asset('storage/' . $latestReview->image_path) }}" alt="Review Image" style="max-height: 80px;padding: 0 50px" ;>
+                @endif
+            </div>
+            @endif
         </div>
         @else
         <p>ショップ情報が見つかりません。</p>

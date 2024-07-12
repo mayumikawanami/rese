@@ -25,12 +25,14 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
+        // 新規ユーザーに 'user' 役割を割り当てる
+        $user->assignRole('user');
+
         event(new Registered($user));
 
         Auth::login($user);
 
-        return
-        redirect()->route('thanks');
+        return redirect()->route('thanks');
 
     }
 

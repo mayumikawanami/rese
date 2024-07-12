@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ShopManagerController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\ReviewController;
 
 
 /*
@@ -65,6 +66,24 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/success', [CheckoutController::class, 'success'])->name('checkout.success');
     Route::get('/cancel', [CheckoutController::class, 'cancel'])->name('checkout.cancel');
+
+    Route::get('/reviews/{shop}', [ReviewController::class, 'index'])->name('reviews.index');
+
+    Route::middleware(['auth', 'role:user'])->group(function () {
+        Route::get('/shops/{id}/reviews/create', [ReviewController::class, 'create'])->name('reviews.create');
+        Route::post('/reviews', [ReviewController::class, 'store'])->name('reviews.store');
+
+        Route::middleware(['check.review.owner'])->group(function () {
+            Route::get('/reviews/{shop_id}/edit/{review_id}', [ReviewController::class, 'edit'])->name('reviews.edit');
+            Route::put('/reviews/{shop_id}/{review_id}', [ReviewController::class, 'update'])->name('reviews.update');
+            Route::delete('/shops/{shop_id}/reviews/{review_id}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
+        });
+    });
+
+    Route::delete('/shops/{shop_id}/reviews/{review_id}', [ReviewController::class, 'destroy'])
+    ->name('reviews.destroy')
+    ->middleware('role:admin|user');
+
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {

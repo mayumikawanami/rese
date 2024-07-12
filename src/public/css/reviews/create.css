@@ -1,0 +1,259 @@
+.review-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.review-title {
+    font-size: 30px;
+    width: 50%;
+    margin-top: 80px;
+}
+
+.shop-item__content {
+    width: 45%;
+    text-align: -webkit-center;
+}
+.review__favorite-shops {
+    width: 55%;
+    box-sizing: border-box;
+}
+
+.review__favorite-shops {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.review__favorite-shop__item {
+    flex: 0 0 calc(50% - 20px);
+    max-width: calc(50% - 20px);
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 5px;
+}
+
+.review__favorite-shop__image img {
+    width: 100%;
+    object-fit: cover;
+}
+
+.review__favorite-shop__content {
+    font-size: 13px;
+    padding: 16px;
+    background-color: #fff;
+}
+
+.review__favorite-shop__name {
+    margin: 0;
+    text-align: left;
+}
+
+.review__favorite-shop__tag {
+    display: flex;
+    line-height: 1;
+}
+
+.review__favorite-shop__area {
+    margin-right: 10px;
+}
+
+.review__favorite-shop__details-with-favorite {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+}
+
+.review__favorite-shop__detail-link {
+    background: rgb(66, 101, 240);
+    color: white;
+    border-radius: 5px;
+    border: rgb(66, 101, 240);
+    padding: 8px 10px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.review__favorite-shop__favorite-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.shop-container__favorite-button--red {
+    color: red;
+    font-size: 2.0em;
+}
+
+.shop-container__favorite-button--gray {
+    color: rgb(182, 179, 179);
+    font-size: 2.0em;
+}
+
+/*レビューフォーム*/
+.review-content {
+    width: 60%;
+    padding: 0 40px;
+    border-left: 3px solid #ddd;
+    height: 550px;
+}
+
+.rating-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.error-messages {
+    margin-bottom: 20px;
+    color: red;
+}
+
+.form-group__rating {
+    margin-bottom: 70px;
+}
+
+.form-group {
+    margin-bottom: 40px;
+}
+
+.form-label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 23px;
+}
+
+.form-label__rating {
+    font-weight: bold;
+    font-size: 23px;
+}
+
+.form-control__textarea {
+    width: 100%;
+    height: 150px;
+    padding: 8px;
+    border: 3px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: transparent;
+    margin-top: 10px;
+}
+
+.char-count {
+    font-size: 12px;
+    color: #888;
+    text-align: right;
+}
+
+.form-control__image {
+    width: 100%;
+    height: 150px;
+    padding: 8px;
+    border: 3px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: white;
+    margin-top: 10px;
+}
+
+.submit-button {
+    padding: 10px 20px;
+    background-color: #fff;
+    color: black;
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    width: 40%;
+    position: absolute;
+    font-size: 15px;
+    left: 300px;
+}
+
+.submit-button:hover {
+    background-color: #0a7af1;
+}
+
+
+/*体験の評価*/
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    /*方向を逆にする */
+    font-size: 0;
+    position: absolute;
+}
+
+.star-rating__input {
+    display: none;
+}
+
+.star-rating__label {
+    font-size: 30px;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.star-rating__label:hover,
+.star-rating__label:hover~.star-rating__label,
+.star-rating__input:checked~.star-rating__label {
+    color: rgb(66, 101, 240);
+}
+
+/* 逆方向のスタート用のスタイル*/
+.star-rating.star-rating-reverse {
+    flex-direction: row-reverse;
+}
+
+.star-rating.star-rating-reverse .star-rating__label {
+    order: 1;
+}
+
+.star-rating.star-rating-reverse .star-rating__input:checked~.star-rating__label {
+    order: -1;
+}
+
+/*画像のアップロード*/
+.form-control__image {
+    border: none;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+}
+
+.form-control__file-input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.form-control__preview img {
+    max-width: 100%;
+    margin-top: -80px;
+    height: 150px;
+}
+
+.dragover {
+    border-color: #000;
+}
+
+.click-upload {
+    margin-top: 35px;
+    font-weight: bold;
+}
+
+.drag-upload {
+    font-size: 13px;
+}
+
+.error-message {
+    text-align: right;
+    color: #dd6a6a;
+}
