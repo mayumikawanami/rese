@@ -14,33 +14,48 @@
 <p class="shop-container__user-info">{{ auth()->user()->name }}さん<br>メールアドレス: {{ auth()->user()->email }}</p>
 @endif
 <div class="shop-container">
-    <form action="{{ route('shops.search') }}" method="GET" class="shop-container__search-form">
-        <div class="shop-container__form-group">
-            <label for="area" class="shop-container__form-label shop-container__form-label--area"></label>
-            <select name="area" id="area" class="shop-container__form-select">
-                <option value="">All area　</option>
-                @foreach($areas as $area)
-                <option value="{{ $area }}">{{ $area }}</option>
-                @endforeach
+    <!-- Sorting Options -->
+    <div class="shop-container__sort-search__form">
+        @if (auth()->check() && auth()->user()->hasRole('user'))
+        <form action="{{ route('shops.index') }}" method="GET" class="shop-container__sort-form">
+            <label for="sort" class="sort">並び替え :</label>
+            <select name="sort" id="sort" class="shop-container__sort-form-select" onchange="this.form.submit()">
+                <option class="sort-list" value="" disabled selected hidden>評価高/低</option>
+                <option class="sort-list" value="default" {{ Request::input('sort') == 'default' ? 'selected' : '' }}>並び替えなし</option>
+                <option class="sort-list" value="random" {{ Request::input('sort') == 'random' ? 'selected' : '' }}>ランダム</option>
+                <option class="sort-list" value="high_rating" {{ Request::input('sort') == 'high_rating' ? 'selected' : '' }}>評価が高い順</option>
+                <option class="sort-list" value="low_rating" {{ Request::input('sort') == 'low_rating' ? 'selected' : '' }}>評価が低い順</option>
             </select>
-        </div>
-        <div class="shop-container__form-group">
-            <label for="genre" class="shop-container__form-label shop-container__form-label--genre"></label>
-            <select name="genre" id="genre" class="shop-container__form-select">
-                <option value="">All genre</option>
-                @foreach($genres as $genre)
-                <option value="{{ $genre }}">{{ $genre }}</option>
-                @endforeach
-            </select>
-        </div>
-        <div class="shop-container__form-group">
-            <label for="shop_name" class="shop-container__form-label shop-container__form-label--shop-name"></label>
-            <button type="submit" class="shop-container__search-button">
-                <i class="fas fa-search"></i>
-            </button>
-            <input type="text" name="shop_name" id="shop_name" placeholder="Search ..." class="shop-container__form-input">
-        </div>
-    </form>
+        </form>
+        @endif
+        <form action="{{ route('shops.search') }}" method="GET" class="shop-container__search-form">
+            <div class="shop-container__form-group">
+                <label for="area" class="shop-container__form-label shop-container__form-label--area"></label>
+                <select name="area" id="area" class="shop-container__form-select">
+                    <option value="">All area　</option>
+                    @foreach($areas as $area)
+                    <option value="{{ $area }}">{{ $area }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="shop-container__form-group">
+                <label for="genre" class="shop-container__form-label shop-container__form-label--genre"></label>
+                <select name="genre" id="genre" class="shop-container__form-select">
+                    <option value="">All genre</option>
+                    @foreach($genres as $genre)
+                    <option value="{{ $genre }}">{{ $genre }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="shop-container__form-group">
+                <label for="shop_name" class="shop-container__form-label shop-container__form-label--shop-name"></label>
+                <button type="submit" class="shop-container__search-button">
+                    <i class="fas fa-search"></i>
+                </button>
+                <input type="text" name="shop_name" id="shop_name" placeholder="Search ..." class="shop-container__form-input">
+            </div>
+        </form>
+    </div>
     @if (isset($message))
     <div class="shop-container__alert shop-container__alert--warning">
         {{ $message }}
@@ -56,6 +71,23 @@
                 </div>
                 <div class="shop-container__shop-content">
                     <h2 class="shop-container__shop-name">{{ $shop->shop_name }}</h2>
+                    <!-- 評価数を星で表示 -->
+                    @if (auth()->check() && auth()->user()->hasRole('user'))
+                    <div class="shop-container__shop-rating">
+                        @if ($shop->reviews->count() > 0)
+                        @for ($i = 1; $i <= 5; $i++) @if ($i <=$shop->reviews->avg('rating'))
+                            <i class="fas fa-star"></i>
+                            @else
+                            <i class="far fa-star"></i>
+                            @endif
+                            @endfor
+                            {{ number_format($shop->reviews->avg('rating'), 1) }}
+                            ({{ $shop->reviews->count() }}件)
+                            @else
+                            <span>評価なし</span>
+                            @endif
+                    </div>
+                    @endif
                     <div class="shop-container__shop-tag">
                         <p class="shop-container__shop-area">#{{ $shop->area->name }}</p> <!-- エリア名を表示 -->
                         <p class="shop-container__shop-genre">#{{ $shop->genre->name }}</p> <!-- ジャンル名を表示 -->

@@ -10,9 +10,44 @@ use App\Models\Genre;
 
 class ShopController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $shops = Shop::all();
+        $query = Shop::query();
+
+        if ($request->filled('sort')) {
+            switch ($request->input('sort')) {
+                case 'random':
+                    $query->inRandomOrder();
+                    break;
+                case 'high_rating':
+                    $query->leftJoin('reviews', 'shops.id', '=', 'reviews.shop_id')
+                    ->select('shops.*')
+                    ->selectRaw('AVG(reviews.rating) as avg_rating, COUNT(reviews.id) as review_count')
+                    ->orderByDesc('avg_rating')
+                    ->orderByRaw('COUNT(reviews.id) = 0') // 評価がない店舗を最後尾に並び替える
+                    ->groupBy('shops.id')
+                    ->orderBy('shops.id');
+                    break;
+                case 'low_rating':
+                    $query->leftJoin('reviews', 'shops.id', '=', 'reviews.shop_id')
+                    ->select('shops.*')
+                    ->selectRaw('IFNULL(AVG(reviews.rating), 6) as avg_rating, COUNT(reviews.id) as review_count')
+                    ->orderBy('avg_rating')
+                    //->orderByRaw('COUNT(reviews.id) = 6') // 評価がない店舗を最後尾に並び替える
+                    ->groupBy('shops.id')
+                    ->orderBy('shops.id');
+                    break;
+                default:
+                    // Default sorting (you can define your own default behavior)
+                    $query->orderBy('id');
+                    break;
+            }
+        } else {
+            // Default sorting (you can define your own default behavior)
+            $query->orderBy('id');
+        }
+
+        $shops = $query->get();
         $areas = Area::distinct()->pluck('name');
         $genres = Genre::distinct()->pluck('name');
 

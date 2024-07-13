@@ -33,8 +33,80 @@ class UsersTableSeeder extends Seeder
 
         // 一般ユーザーの作成
         $user = User::create([
-            'name' => 'User',
-            'email' => 'user@example.com',
+            'name' => 'User1',
+            'email' => 'user1@example.com',
+            'password' => bcrypt('password'),
+        ]);
+        $user->assignRole('user');
+
+        // 一般ユーザーの作成
+        $user = User::create([
+            'name' => 'User2',
+            'email' => 'user2@example.com',
+            'password' => bcrypt('password'),
+        ]);
+        $user->assignRole('user');
+
+        // 一般ユーザーの作成
+        $user = User::create([
+            'name' => 'User3',
+            'email' => 'user3@example.com',
+            'password' => bcrypt('password'),
+        ]);
+        $user->assignRole('user');
+
+        // 一般ユーザーの作成
+        $user = User::create([
+            'name' => 'User4',
+            'email' => 'user4@example.com',
+            'password' => bcrypt('password'),
+        ]);
+        $user->assignRole('user');
+
+        // 一般ユーザーの作成
+        $user = User::create([
+            'name' => 'User5',
+            'email' => 'user5@example.com',
+            'password' => bcrypt('password'),
+        ]);
+        $user->assignRole('user');
+
+        // 一般ユーザーの作成
+        $user = User::create([
+            'name' => 'User6',
+            'email' => 'user6@example.com',
+            'password' => bcrypt('password'),
+        ]);
+        $user->assignRole('user');
+
+        // 一般ユーザーの作成
+        $user = User::create([
+            'name' => 'User7',
+            'email' => 'user7@example.com',
+            'password' => bcrypt('password'),
+        ]);
+        $user->assignRole('user');
+
+        // 一般ユーザーの作成
+        $user = User::create([
+            'name' => 'User8',
+            'email' => 'user8@example.com',
+            'password' => bcrypt('password'),
+        ]);
+        $user->assignRole('user');
+
+        // 一般ユーザーの作成
+        $user = User::create([
+            'name' => 'User9',
+            'email' => 'user9@example.com',
+            'password' => bcrypt('password'),
+        ]);
+        $user->assignRole('user');
+
+        // 一般ユーザーの作成
+        $user = User::create([
+            'name' => 'User10',
+            'email' => 'user10@example.com',
             'password' => bcrypt('password'),
         ]);
         $user->assignRole('user');
