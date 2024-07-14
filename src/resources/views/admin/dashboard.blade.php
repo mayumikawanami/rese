@@ -5,9 +5,30 @@
 @endsection
 
 @section('content')
+@if (session('status'))
+<div class="admin__alert-success">
+    {{ session('status') }}
+</div>
+@endif
+@if ($errors->has('csv_errors'))
+<div class="admin__alert-error">
+    <ul>
+        @foreach ($errors->get('csv_errors') as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+@if ($errors->has('message'))
+<div class="admin__alert-error">
+    <ul>
+        <li>{{ $errors->first('message') }}</li>
+    </ul>
+</div>
+@endif
 <div class="admin-container">
-    <h2 class="admin-container__title">店舗管理者作成フォーム</h2>
     <div class=admin-container__form>
+        <h2 class="admin-container__title">店舗管理者の作成</h2>
         <form action="{{ route('admin.createShopManager') }}" method="POST">
             @csrf
             <div class="form-group">
@@ -28,11 +49,17 @@
             </div>
             <button type="submit" class="btn btn-primary">店舗管理者を作成</button>
         </form>
-        @if (session('status'))
-        <div class="admin__alert-success">
-            {{ session('status') }}
-        </div>
-        @endif
+    </div>
+    <div class="admin-container__form">
+        <h2 class="admin-container__title">csvインポート</h2>
+        <form action="{{ route('admin.importCsv') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="form-group__csv">
+                <label for="csv_file">CSVファイルを選択してください</label>
+                <input type="file" name="csv_file" id="csv_file" accept=".csv" required>
+            </div>
+            <button type="submit" class="btn btn-primary">CSVをインポートする</button>
+        </form>
     </div>
 </div>
 @endsection

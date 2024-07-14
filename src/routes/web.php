@@ -89,6 +89,7 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::post('/admin/shop-managers', [AdminController::class, 'createShopManager'])->name('admin.createShopManager');
+    Route::post('/shops/import', [AdminController::class, 'importCsv'])->name('admin.importCsv');
 });
 
 Route::middleware(['auth', 'role:shop_manager'])->group(function () {
