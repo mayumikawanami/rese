@@ -12,24 +12,8 @@
     color: rgb(78, 75, 75);
 }
 
-.shop-container__sorting-options {
-    margin-bottom: 20px;
-}
-
-.shop-container__sorting-options label {
-    font-weight: bold;
-    margin-right: 10px;
-}
-
-.shop-container__form-select {
-    padding: 8px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-}
-
 .shop-container__sort-search__form{
     display: flex;
-    font-size: 13px;
 }
 
 .shop-container__sort-form {
@@ -49,23 +33,6 @@
     margin-right: 50%;
     border-radius: 10px;
 }
-
-.shop-container__sort-form-select{
-    border: none;
-    margin-right: 5px;
-    cursor: pointer;
-    background-repeat: no-repeat;
-    padding-left: 7px;
-    background-position: right 10px top 50%;
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-}
-
-.sort {
-    padding-left: 10px;
-}
-
 
 .shop-container__search-form{
     width: 45%;
@@ -88,6 +55,68 @@
 .shop-container__form-group {
     display: flex;
 }
+
+.sort {
+    margin-right: 10px;
+}
+
+.dropdown {
+    position: relative;
+}
+
+ul.dropdown li:hover ul {
+    display: block;
+}
+
+.dropdown ul li a:hover {
+    background-color: rgb(215, 220, 241);
+}
+
+.dropbtn {
+    background-color: #fff;
+    color: black;
+    padding: 10px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 160px;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    left: -93px;
+    top: 26px;
+    padding: 0px;
+}
+
+.dropdown-content li {
+    list-style: none;
+    width: 250px;
+}
+
+.dropdown-content li a {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown-list {
+    color: #000;
+}
+
+.selected a {
+    background-color: rgb(66, 101, 240);
+    color: #fff;
+}
+
 
 .shop-container__form-select {
     font-size: 15px;
@@ -289,11 +318,21 @@
         right: 0;
         margin-right: 6%;
         margin-top: 0;
+        font-size: 12px;
     }
 
     .shop-container__shop-rating {
         font-size: 7px;
     }
+    .dropbtn {
+        padding: 0px;
+        font-size: 12px;
+    }
+
+    .dropdown-content {
+        top: 4px;
+    }
+
 }
 
 @media screen and (max-width: 480px) {

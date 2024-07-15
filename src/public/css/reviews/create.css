@@ -416,4 +416,10 @@
         font-size: 6px;
     }
 
+    .error-message {
+        margin-top: 24px;
+        margin-bottom: 0;
+        font-size: 10px;
+    }
+
 }

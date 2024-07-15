@@ -322,6 +322,10 @@
         font-size: 12px;
     }
 
+    .alert-success__review {
+        top: 70px;
+    }
+
 }
 
 @media screen and (max-width: 480px) {

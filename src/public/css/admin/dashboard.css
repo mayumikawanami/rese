@@ -92,6 +92,10 @@
     display: inline-block;
 }
 
+.admin__alert-error ul {
+    padding: 0;
+}
+
 .admin__alert-error li{
     list-style: none;
 }
@@ -117,5 +121,13 @@
         font-size: 15px;
         margin-bottom: 15px;
         color: #333;
+    }
+
+    .admin__alert-error li {
+        font-size: 11px;
+    }
+
+    .admin__alert-success {
+        font-size: 11px;
     }
 }

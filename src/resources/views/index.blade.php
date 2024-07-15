@@ -17,16 +17,27 @@
     <!-- Sorting Options -->
     <div class="shop-container__sort-search__form">
         @if (auth()->check() && auth()->user()->hasRole('user'))
-        <form action="{{ route('shops.index') }}" method="GET" class="shop-container__sort-form">
+        <div class="shop-container__sort-form">
             <label for="sort" class="sort">並び替え :</label>
-            <select name="sort" id="sort" class="shop-container__sort-form-select" onchange="this.form.submit()">
-                <option class="sort-list" value="" disabled selected hidden>評価高/低</option>
-                <option class="sort-list" value="default" {{ Request::input('sort') == 'default' ? 'selected' : '' }}>並び替えなし</option>
-                <option class="sort-list" value="random" {{ Request::input('sort') == 'random' ? 'selected' : '' }}>ランダム</option>
-                <option class="sort-list" value="high_rating" {{ Request::input('sort') == 'high_rating' ? 'selected' : '' }}>評価が高い順</option>
-                <option class="sort-list" value="low_rating" {{ Request::input('sort') == 'low_rating' ? 'selected' : '' }}>評価が低い順</option>
-            </select>
-        </form>
+            <div class="dropdown">
+                <button class="dropbtn">評価高/低</button>
+                <ul class="dropdown-content">
+                    <li class="{{ Request::input('sort') == 'default' ? 'selected' : '' }}">
+                        <a class="dropdown-list" href="{{ route('shops.index', ['sort' => 'default']) }}">並び替えなし</a>
+                    </li>
+                    <li class="{{ Request::input('sort') == 'random' ? 'selected' : '' }}">
+                        <a class="dropdown-list" href="{{ route('shops.index', ['sort' => 'random']) }}">ランダム</a>
+                    </li>
+                    <li class="{{ Request::input('sort') == 'high_rating' ? 'selected' : '' }}">
+                        <a class="dropdown-list" href="{{ route('shops.index', ['sort' => 'high_rating']) }}">評価が高い順</a>
+                    </li>
+                    <li class="{{ Request::input('sort') == 'low_rating' ? 'selected' : '' }}">
+                        <a class="dropdown-list" href="{{ route('shops.index', ['sort' => 'low_rating']) }}">評価が低い順</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
         @endif
         <form action="{{ route('shops.search') }}" method="GET" class="shop-container__search-form">
             <div class="shop-container__form-group">
