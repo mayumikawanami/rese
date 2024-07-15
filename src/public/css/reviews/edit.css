@@ -5,7 +5,7 @@
 
 .review-title {
     font-size: 30px;
-    width: 50%;
+    width: 90%;
     margin-top: 80px;
 }
 
@@ -25,17 +25,17 @@
 }
 
 .review__favorite-shop__item {
-    flex: 0 0 calc(50% - 20px);
-    max-width: calc(50% - 20px);
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 8px;
     overflow: hidden;
     margin: 5px;
+    width: 70%;
 }
 
 .review__favorite-shop__image img {
     width: 100%;
+    max-height: 200px;
     object-fit: cover;
 }
 
@@ -73,7 +73,6 @@
     border: rgb(66, 101, 240);
     padding: 8px 10px;
     text-decoration: none;
-    display: inline-flex;
     align-items: center;
     cursor: pointer;
 }
@@ -262,4 +261,165 @@
 .error-message {
     text-align: right;
     color: #dd6a6a;
+    font-size: 13px;
+}
+
+@media screen and (max-width: 768px) {
+    .review-title {
+        font-size: 17px;
+        width: 90%;
+    }
+
+    .review__favorite-shop__name {
+        font-size: 12px;
+    }
+
+    .review__favorite-shop__tag {
+        font-size: 8px;
+    }
+
+    .review__favorite-shop__detail-link {
+        font-size: 7px;
+        width: 50%;
+        padding: 3px 10px;
+        border-radius: 2px;
+    }
+
+    .shop-container__favorite-button--gray {
+        font-size: 1.2em;
+    }
+
+    .shop-container__favorite-button--red {
+        font-size: 1.2em;
+    }
+
+    .form-label__rating {
+        font-size: 15px;
+    }
+
+    .star-rating__label {
+        font-size: 25px;
+    }
+
+    .form-label {
+        font-size: 15px;
+    }
+
+    .form-control__textarea {
+        font-size: 11px;
+    }
+
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    .submit-button {
+        padding: 5px 10px;
+        font-size: 13px;
+        left: 190px;
+    }
+
+    .click-upload {
+        font-size: 13px;
+    }
+
+    .drag-upload {
+        font-size: 11px;
+    }
+
+    .char-count {
+        font-size: 8px;
+    }
+
+    .review-content {
+        padding: 0 20px;
+        height: 450px;
+    }
+
+    .review__favorite-shop__detail-link {
+        font-size: 6px;
+        width: 50%;
+        padding: 3px 10px;
+        border-radius: 2px;
+    }
+
+}
+
+@media screen and (max-width: 480px) {
+    .review-title {
+        font-size: 15px;
+        width: 90%;
+        margin-top: 20px;
+    }
+
+    .review__favorite-shop__name {
+        font-size: 10px;
+    }
+
+    .review__favorite-shop__tag {
+        font-size: 6px;
+    }
+
+    .review__favorite-shop__detail-link {
+        font-size: 5px;
+    }
+
+    .shop-container__favorite-button--gray {
+        font-size: 1em;
+    }
+
+    .review__favorite-shop__item {
+        width: 90%;
+    }
+    .review__favorite-shop__content {
+        padding: 10px;
+    }
+
+    .form-label__rating {
+        font-size: 13px;
+    }
+
+    .review-content {
+        padding: 0 10px;
+        height: 400px;
+    }
+
+    .star-rating__label {
+        font-size: 20px;
+    }
+
+    .form-label {
+        font-size: 13px;
+    }
+
+    .form-control__textarea {
+        font-size: 10px;
+    }
+
+    .form-group__rating {
+        margin-bottom: 30px;
+    }
+
+    .form-group {
+        margin-bottom: 0;
+    }
+
+    .submit-button {
+        padding: 5px;
+        font-size: 12px;
+        left: 110px;
+    }
+
+    .click-upload {
+        font-size: 12px;
+    }
+
+    .drag-upload {
+        font-size: 10px;
+    }
+
+    .char-count {
+        font-size: 6px;
+    }
+
 }

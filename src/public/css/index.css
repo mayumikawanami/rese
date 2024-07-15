@@ -263,7 +263,7 @@
     }
 
     .shop-container__shop-wrapper {
-        margin: 5px 10px;
+        margin: 40px 10px;
         gap: 10px;
     }
 
@@ -281,7 +281,19 @@
         position: absolute;
         right: 0px;
         top: -5px;
-}
+    }
+
+    .shop-container__sort-form {
+        width:40%;
+        height: 25px;
+        right: 0;
+        margin-right: 6%;
+        margin-top: 0;
+    }
+
+    .shop-container__shop-rating {
+        font-size: 7px;
+    }
 }
 
 @media screen and (max-width: 480px) {
@@ -316,7 +328,7 @@
         left: 0;
     }
     .shop-container__shop-wrapper{
-        margin: 5px 10px;
+        margin: 40px 10px;
     }
 
     .shop-container__user-info {
@@ -324,6 +336,14 @@
         position: absolute;
         right: 10px;
         top: 5px;
+    }
+
+    .shop-container__sort-form {
+        width:50%;
+    }
+
+    .shop-container__shop-rating {
+        font-size: 5px;
     }
 
 }

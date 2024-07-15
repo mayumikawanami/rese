@@ -218,8 +218,8 @@
 }
 .all-reviews-button {
     margin: 20px 0;
-    border-bottom: #f2acbe;
 }
+
 .view-all-reviews-button {
     color: white;
     background-color: blue;
@@ -269,7 +269,7 @@
 
     .shop-detail__container {
         padding: 0;
-}
+    }
 
     .shop-detail__content {
         padding: 0;
@@ -294,11 +294,32 @@
     }
 
     .shop-detail__info{
-        font-size: 15px;
+        font-size: 14px;
     }
 
     .shop-detail__alert-success {
         font-size: 10px;
+    }
+
+    .all-reviews-button {
+        font-size: 12px;
+    }
+
+    .review-button {
+        font-size: 12px;
+    }
+
+    .detail__star-rating {
+        font-size: 17px;
+    }
+
+    .detail__review-content{
+        font-size: 14px;
+    }
+
+    .delete-button {
+        border-bottom: 1.0px solid;
+        font-size: 12px;
     }
 
 }
@@ -376,4 +397,36 @@
         font-size: 10px;
     }
 
+    .all-reviews-button {
+        font-size: 10px;
+    }
+
+    .review-button {
+        font-size: 10px;
+    }
+
+    .detail__star-rating {
+        font-size: 15px;
+    }
+
+    .detail__review-content{
+        font-size: 13px;
+    }
+
+    .delete-button {
+        font-size: 11px;
+    }
+
+    .alert-success__review {
+        top: 70px;
+        font-size: 10px;
+    }
+
+    .shop-detail__selected-shop-details.has-reviews img {
+        height: 60px;
+    }
+
+    .shop-detail__error-message {
+        font-size: 8px;;
+    }
 }

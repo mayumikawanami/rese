@@ -72,8 +72,8 @@ class AdminController extends Controller
             $photoUrl = $row[array_search('画像URL', $header)];
             $extension = pathinfo($photoUrl, PATHINFO_EXTENSION);
 
-            if (!in_array($extension, ['jpeg', 'png'])) {
-                return back()->withErrors(['csv_errors' => '画像URLの拡張子はjpeg、pngのみ対応しています。']);
+            if (!in_array($extension, ['jpeg','jpg', 'png'])) {
+                return back()->withErrors(['csv_errors' => '画像URLの拡張子はjpeg、jpg、pngのみ対応しています。']);
             }
 
             $shopName = $row[array_search('店舗名', $header)];
